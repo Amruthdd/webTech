@@ -8,7 +8,7 @@ import Dash from './Dash';
 import Explore from './Explore'
 import Profile from './Profile';
 
-function Main(){
+function Main(props){
 
     const [par, setPar] = useState("Home");
     let { id } = useParams();
@@ -21,14 +21,14 @@ function Main(){
     const display =()=>{
         if(par === "Home"){
             return(
-                <Dash/>
+                <Dash val={props.val}/>
             )
         }
 
         else if(par === "Activities"){
             return(
                 <div>
-                <Activities/>
+                <Activities val={props.val}/>
                 </div>
                 
             )
@@ -37,7 +37,7 @@ function Main(){
 
         else if (par === "Explore"){
             return(
-                <Explore/>
+                <Explore val={props.val}/>
             )
                 
         }

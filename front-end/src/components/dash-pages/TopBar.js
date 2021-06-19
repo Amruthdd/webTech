@@ -8,10 +8,10 @@ import search24Filled from '@iconify/icons-fluent/search-24-filled';
 
 import './topbar.css'
 import "./index.css";
-function TopBar(){
+function TopBar(props){
 
     const [src,setSrc] = useState("");
-    const [searchTerm, setSearchTerm] = useState("");
+    // const [searchTerm, setSearchTerm] = useState("");
     const u = localStorage.getItem("email");
 
     useEffect(() => {
@@ -32,7 +32,7 @@ function TopBar(){
                         type='text'
                         placeholder='Search for a question'
                         name='search'
-                        onChange={e=>setSearchTerm(e.target.value)}>
+                        onChange={e=>props.question(e.target.value)}>
                 </input>
                 <button>
                     <Icon icon={search24Filled} />  
