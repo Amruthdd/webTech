@@ -6,7 +6,7 @@ import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import Axios from "axios";
 
 
-function Explore(){
+function Explore(props){
 
     const [details, setDetails] = useState([]);
     const [count,setCount] = useState(0);
@@ -34,7 +34,9 @@ function Explore(){
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
             >
                 <Masonry>
-                {details!==undefined?details.map((item) => {
+                {details!==undefined?details.filter((item)=>{
+                   return props.val===""?item.question:item.question.toLowerCase().includes((props.val).toLowerCase())?item:"";
+                }).map((item) => {
                     
                     
                         return(

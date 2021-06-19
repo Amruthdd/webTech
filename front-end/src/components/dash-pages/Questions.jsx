@@ -104,7 +104,9 @@ export default function Questions(props){
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
             >
                 <Masonry>
-                {details===undefined?"":details.map((item) => {
+                {details===undefined?"":details.filter((item)=>{
+                   return props.val===""?item.question:item.question.toLowerCase().includes((props.val).toLowerCase())?item:"";
+                }).map((item) => {
                     return(
 
                     <div className="activities-qst-card">

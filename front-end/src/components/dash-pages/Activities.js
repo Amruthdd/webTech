@@ -10,7 +10,7 @@ import Questions from './Questions';
 import Answers from './Answers';
 
 
-function Activities(){
+function Activities(props){
 
     const u = localStorage.getItem("email");
     const [questionsClicked, setQuestionsClicked] = useState(true);
@@ -71,7 +71,7 @@ function Activities(){
             <Link className="activities-link" onClick={handleQuestionClick} style={{backgroundColor:colorQ}}>My Questions ({countQ})</Link>
             <Link className="activities-link" onClick={handleAnswerClick} style={{backgroundColor:colorA}}>My Answers ({countA})</Link>
             <div className="activities-main">
-            {questionsClicked===true?<Questions name={name} src={src} count={countQ}/>:<Answers name={name} src={src} count={countA}/>} 
+            {questionsClicked===true?<Questions val={props.val} name={name} src={src} count={countQ}/>:<Answers name={name} src={src} count={countA}/>} 
 
             </div>
         </div>
