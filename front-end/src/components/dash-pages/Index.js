@@ -14,6 +14,7 @@ import Main from './Main';
 import TopBar from './TopBar';
 import Logout from "../auth-pages/Logout";
 import Profile from "../dash-pages/Profile";
+import AnswerQst from './AnswerQst';
 
 function Index(){
 
@@ -30,8 +31,10 @@ function Index(){
                     <div className="ind-comp">
                     <Switch>
                         <Route exact path="/index/:id" children={<Main/>} />
+                        <Route path="/index/:id/:id2" component={AnswerQst}/>
                     </Switch>
                     </div>
+
                 
             </div>
         

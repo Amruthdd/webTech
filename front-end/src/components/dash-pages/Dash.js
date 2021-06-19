@@ -1,6 +1,7 @@
 import React,{ useEffect,useState} from 'react';
 import './dash.css';
 import {initData} from './data';
+import { Link } from "react-router-dom";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import Axios from "axios";
 import { Icon, InlineIcon } from '@iconify/react';
@@ -39,18 +40,28 @@ function Dash(){
                 {details!==undefined?details.map((item) => {
                     if(item.answereduser !== null){
                         return(
-
+                            <Link 
+                                className="qst-link-card" 
+                                to={{
+                                    pathname:`/index/Home/${item.questionid}`,
+                                    state: {
+                                        question: item.question, 
+                                        user:item.user
+                                      }
+                                }}
+                                
+                            >
                             <div className="qst-card" key={item.questionid}>
                                 <div className="qst-card-in">
-                                    <div className="qst">{item.question} ?</div>
+                                    <div className="qst">{item.question}</div>
                                     <div className="qst-name">
                                         <div>
                                             {!(item.answereduser.image)?<figure className='person-icon'></figure>:
-                                                (!src?<figure className='person-icon'></figure>:
+                                                (!src?
                                                     <img 
                                                         className="person-img" 
                                                         src={`http://localhost:8001/${item.answereduser.image}`}
-                                                    />
+                                                    />:<figure className='person-icon'></figure>
                                                 )
                                             }
                                             
@@ -86,9 +97,10 @@ function Dash(){
 
                                 
                             </div>
-                            )
+                            </Link>     
+                        )
                     }
-                    
+                  
 
                 }):""}
                 </Masonry>

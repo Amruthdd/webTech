@@ -35,7 +35,7 @@ export default function Questions(props){
     // }
 
 
-    const deleteQuestion = (e) => {
+    const deleteQuestion = (qstid) => {
         
 
         fetch(`http://localhost:8001/question/user`, {
@@ -45,7 +45,7 @@ export default function Questions(props){
                 "x-access-token": localStorage.getItem("token"),
             },
             body: JSON.stringify({
-                questionid:qstId
+                questionid:qstid
             }),
         })
             .then((r) => {
@@ -125,7 +125,7 @@ export default function Questions(props){
                                 data-toggle='modal'
                                 data-target='#EditQuestionModalCenter'
                                 style={{marginRight:40}}
-                                onClick={()=>{setQst(item.question); setQstId(item.questionid); setCategory(item.category)}}>
+                                onClick={()=>{setQst(item.question);  setCategory(item.category)}}>
                                     Edit
                                 </button>
                                 
@@ -135,7 +135,9 @@ export default function Questions(props){
                                 data-toggle='modal'
                                 // data-target='#deleteQuestionModalCenter'
                                 style={{marginRight:40}}
-                                onClick={deleteQuestion}>
+                                onClick={()=>{
+                                    deleteQuestion(item.questionid)}
+                                }>
                                     Delete
                                 </button>
                                 
