@@ -11,6 +11,7 @@ import "./index.css";
 function TopBar(){
 
     const [src,setSrc] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
     const u = localStorage.getItem("email");
 
     useEffect(() => {
@@ -30,7 +31,8 @@ function TopBar(){
                 <input className='search-input form-control px-3 mb-4'
                         type='text'
                         placeholder='Search for a question'
-                        name='search'>
+                        name='search'
+                        onChange={e=>setSearchTerm(e.target.value)}>
                 </input>
                 <button>
                     <Icon icon={search24Filled} />  
