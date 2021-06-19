@@ -120,7 +120,7 @@ export default function Questions(props){
                             
                             </a>
                             
-                            <div class="drop dropdown-menu" id="dropdown" aria-labelledby="dropdownMenuLink" >
+                            <div class="drop dropdown-menu dropdown-menu-right" id="dropdown" aria-labelledby="dropdownMenuLink" >
                             <button
                                 className='btn dr-link dropdown-item'
                                 type='button'
