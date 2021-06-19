@@ -23,7 +23,7 @@ exports.answersofq =  (req, res, next) => {
                 obj.answereduser = e.dataValues.user.fullname;
                 result.push(obj);
             })
-            res.send(200).json({
+            res.status(200).json({
                 result: result
             });
             console.log(result);

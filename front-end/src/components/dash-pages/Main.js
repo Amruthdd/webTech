@@ -3,6 +3,7 @@ import {
     useParams
 } from "react-router-dom";
 import Activities from './Activities';
+import AnswerQst from './AnswerQst';
 import Dash from './Dash';
 import Explore from './Explore'
 import Profile from './Profile';
@@ -50,6 +51,7 @@ function Main(){
             )
                 
         }
+        
     }
     return (
         <div>

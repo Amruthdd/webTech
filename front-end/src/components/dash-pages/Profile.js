@@ -46,7 +46,7 @@ function Profile(props) {
                            
                                 
                                 <div className="d-flex justify-content-center align-items-center" >
-                                    {!src?<figure className='profile-page-icon'></figure>:<img className="profile-img" src={src}/>}
+                                    {!src?<img className="profile-img" src={src}/>:<figure className='profile-page-icon'></figure>}
                                     
                                     
                                 </div>
