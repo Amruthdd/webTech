@@ -7,7 +7,7 @@ import DeleteQuestionModal from './DeleteQuestionModal';
 import { Icon, InlineIcon } from '@iconify/react';
 import arrowUp24Filled from '@iconify/icons-fluent/arrow-up-24-filled';
 import arrowDown24Filled from '@iconify/icons-fluent/arrow-down-24-filled';
-
+import './activities.css';
 
 export default function Questions(props){
 
@@ -111,13 +111,12 @@ export default function Questions(props){
 
                     <div className="activities-qst-card">
                         <div className="act-qst-card-in">
-                            <div className="qst">{item.question}</div>
-
-                            
-
-                            <div className="dropdown" >
-                            <a class="menu-icon dropdown-toggle"  href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            
+                           
+                                <div className="act-qst">{item.question}</div>
+                                
+                                <div className="dropdown" >
+                                <a class="menu-icon dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                            
+                            <figure className="menu-icon"/>
                             </a>
                             
                             <div class="drop dropdown-menu dropdown-menu-right" id="dropdown" aria-labelledby="dropdownMenuLink" >
@@ -145,7 +144,12 @@ export default function Questions(props){
                                 
                             </div>
                 </div>
-                            <div className="qst-name">
+                            
+
+                            
+
+                            
+                            <div className="activities-qst-name">
                                 <div>
                                     
                                     {!(props.src)?<figure className='person-icon'></figure>:
