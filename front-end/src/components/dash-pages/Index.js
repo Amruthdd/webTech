@@ -14,10 +14,13 @@ import Main from './Main';
 import TopBar from './TopBar';
 import Logout from "../auth-pages/Logout";
 import Profile from "../dash-pages/Profile";
+import AnswerQst from './AnswerQst';
 
 function Index(){
-
-    
+    const [question, setQuestion] = useState("");
+    function handlequestion(val){
+        setQuestion(val);
+    }
     
 
     return (
@@ -25,13 +28,15 @@ function Index(){
             <div className="index-main">
             
                 
-                    <TopBar/>
+                    <TopBar question={handlequestion}/>
                     <Nav/>
                     <div className="ind-comp">
                     <Switch>
-                        <Route exact path="/index/:id" children={<Main/>} />
+                        <Route exact path="/index/:id" children={<Main val={question===""?"":question}/>} />
+                        <Route path="/index/:id/:id2" component={AnswerQst}/>
                     </Switch>
                     </div>
+
                 
             </div>
         

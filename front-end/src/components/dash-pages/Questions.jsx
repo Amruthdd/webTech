@@ -7,7 +7,7 @@ import DeleteQuestionModal from './DeleteQuestionModal';
 import { Icon, InlineIcon } from '@iconify/react';
 import arrowUp24Filled from '@iconify/icons-fluent/arrow-up-24-filled';
 import arrowDown24Filled from '@iconify/icons-fluent/arrow-down-24-filled';
-
+import './activities.css';
 
 export default function Questions(props){
 
@@ -24,9 +24,12 @@ export default function Questions(props){
                 "x-access-token": localStorage.getItem("token"),
             },
         }).then((response) => {
-            setDetails(response.data.result);
-            setCount(response.data.result.length);
-            console.log(response);
+            if(response.data.result!==undefined){
+                setDetails(response.data.result);
+                setCount(response.data.result.length);
+                console.log(response);
+            }
+            
         });
     }, []);
 
@@ -35,7 +38,7 @@ export default function Questions(props){
     // }
 
 
-    const deleteQuestion = (e) => {
+    const deleteQuestion = (qstid) => {
         
 
         fetch(`http://localhost:8001/question/user`, {
@@ -45,7 +48,7 @@ export default function Questions(props){
                 "x-access-token": localStorage.getItem("token"),
             },
             body: JSON.stringify({
-                questionid:qstId
+                questionid:qstid
             }),
         })
             .then((r) => {
@@ -104,28 +107,29 @@ export default function Questions(props){
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
             >
                 <Masonry>
-                {details===undefined?"":details.map((item) => {
+                {details===undefined?"":details.filter((item)=>{
+                   return props.val===""?item.question:item.question.toLowerCase().includes((props.val).toLowerCase())?item:"";
+                }).map((item) => {
                     return(
 
                     <div className="activities-qst-card">
                         <div className="act-qst-card-in">
-                            <div className="qst">{item.question}</div>
-
-                            
-
-                            <div className="dropdown" >
-                            <a class="menu-icon dropdown-toggle"  href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            
+                           
+                                <div className="act-qst">{item.question}</div>
+                                
+                                <div className="dropdown" >
+                                <a class="menu-icon dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                            
+                            <figure className="menu-icon"/>
                             </a>
                             
-                            <div class="drop dropdown-menu" id="dropdown" aria-labelledby="dropdownMenuLink" >
+                            <div class="drop dropdown-menu dropdown-menu-right" id="dropdown" aria-labelledby="dropdownMenuLink" >
                             <button
                                 className='btn dr-link dropdown-item'
                                 type='button'
                                 data-toggle='modal'
                                 data-target='#EditQuestionModalCenter'
                                 style={{marginRight:40}}
-                                onClick={()=>{setQst(item.question); setQstId(item.questionid); setCategory(item.category)}}>
+                                onClick={()=>{setQst(item.question);  setCategory(item.category)}}>
                                     Edit
                                 </button>
                                 
@@ -135,13 +139,20 @@ export default function Questions(props){
                                 data-toggle='modal'
                                 // data-target='#deleteQuestionModalCenter'
                                 style={{marginRight:40}}
-                                onClick={deleteQuestion}>
+                                onClick={()=>{
+                                    deleteQuestion(item.questionid)}
+                                }>
                                     Delete
                                 </button>
                                 
                             </div>
                 </div>
-                            <div className="qst-name">
+                            
+
+                            
+
+                            
+                            <div className="activities-qst-name">
                                 <div>
                                     
                                     {!(props.src)?<figure className='person-icon'></figure>:
