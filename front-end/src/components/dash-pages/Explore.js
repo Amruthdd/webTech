@@ -28,7 +28,7 @@ function Explore(props){
     return (
 
         <div className="dash-main">
-            <h5>All topics({details.length})</h5>
+            <h5>All topics({details!==undefined?details.length:""})</h5>
             
             <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
