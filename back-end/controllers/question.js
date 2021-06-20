@@ -75,6 +75,7 @@ exports.getquestionhome = async (req, res, next) => {
 }
 
 
+
 exports.deletequestion = (req, res, next) => {
 
     questiontable.destroy({
@@ -181,6 +182,7 @@ exports.getquestionbycategory = (req, res, next) => {
             next(err);
         })
 }
+
 
 exports.exploreallquestions = (req, res, next) => {
     questiontable

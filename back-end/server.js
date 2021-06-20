@@ -34,8 +34,8 @@ answertable.belongsTo(questiontable, {
 });
 
 
-app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 const filestorage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'images');
