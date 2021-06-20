@@ -35,8 +35,11 @@ export default function Answers(props){
                         <div className="qst-card-in">
                             <div className="qst">{item.question}</div>
                             <div className="qst-name">
+                            
+                                <div className="activities-qst-name">
                                 <div>
-                                {!(props.src)?<figure className='person-icon'></figure>:
+                                    
+                                    {!(props.src)?<figure className='person-icon'></figure>:
                                                     <img 
                                                         className="person-img" 
                                                         src={`http://localhost:8001/${props.src}`}
@@ -45,12 +48,13 @@ export default function Answers(props){
                                 </div>
                                 <div>
                                     <div>{props.name}</div>
-                                    <div style={{fontSize:10,color:"gray"}}>from{" "} 
+                                    <div style={{fontSize:10,color:"gray"}}>asked in{" "} 
                                         <span style={{color:"#06F2B0"}}>
                                             {item.category}
                                         </span>
                                     </div>
                                 </div>
+                            </div>
                             </div>
                             <div className="qst-ans">
                                 {item.answer}

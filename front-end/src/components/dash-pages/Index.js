@@ -21,8 +21,6 @@ function Index(){
     function handlequestion(val){
         setQuestion(val);
     }
-    if(question!=="")
-    console.log(question);
     
 
     return (

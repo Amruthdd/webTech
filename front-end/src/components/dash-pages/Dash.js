@@ -9,7 +9,7 @@ import arrowUp24Filled from '@iconify/icons-fluent/arrow-up-24-filled';
 import arrowDown24Filled from '@iconify/icons-fluent/arrow-down-24-filled';
 
 
-function Dash(){
+function Dash(props){
 
     const [details, setDetails] = useState([]);
     const [src,setSrc] = useState(null);
@@ -37,7 +37,9 @@ function Dash(){
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
             >
                 <Masonry>
-                {details!==undefined?details.map((item) => {
+                {details!==undefined?details.filter((item)=>{
+                   return props.val===""?item.question:item.question.toLowerCase().includes((props.val).toLowerCase())?item:"";
+                }).map((item) => {
                     if(item.answereduser !== null){
                         return(
                             <Link 

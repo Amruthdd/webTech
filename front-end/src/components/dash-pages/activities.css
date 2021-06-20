@@ -54,8 +54,18 @@ img{
 .menu-icon{
     /* display: inline-block; */
     float: right;
-    width: 10%;
+    width: 5%;
     color: #6f717e;
+    background: url("https://img.icons8.com/color/48/000000/menu-2.png");
+    background-size: cover;
+}
+
+.drop{
+    border-radius: 10px;
+}
+
+.dropdown-toggle::after {
+    content: none;
 }
 /* 
 #menu-icon:hover{
@@ -63,7 +73,14 @@ img{
     border-radius: 100%;
 } */
 
-.qst{
-    display: inline-block;
-    /* width: 80%; */
+.act-qst{
+    /* display: inline-block; */
+    float: left;
+    width: 80%;
+}
+
+.activities-qst-name{
+    font-size: 0.8rem;
+    display: inline-flex;
+    margin-top: 5px;
 }

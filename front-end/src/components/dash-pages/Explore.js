@@ -54,7 +54,7 @@ function Explore(props){
 
                             <div className="qst-card" key={item.questionid}>
                                 <div className="qst-card-in-exp">
-                                    <div className="qst">{item.question} ?</div>
+                                    <div className="qst">{item.question}</div>
                                     <div className="qst-name">
                                         <div>
                                             <figure className='person-icon'></figure>
