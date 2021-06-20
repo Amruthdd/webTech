@@ -64,7 +64,8 @@ function AnswerQst({match},{aboutProps}){
     };
     return (
         <div className="ansqst-main">
-            <div>
+            
+                <div>
             <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
             >
@@ -151,13 +152,11 @@ function AnswerQst({match},{aboutProps}){
                 
                 </Masonry>
             </ResponsiveMasonry>
-            
-        </div>
-            
+            <h6>Previous answers({details!==undefined?details.length:""})</h6>
             {details!==undefined?details.map((item) =>{
                 return(
                     <div>
-                        <div className="qst-card">
+                        <div className="ansqst-ans-card">
                                 <div className="qst-card-in">
                                     
                                     <div className="qst-name">
@@ -201,6 +200,10 @@ function AnswerQst({match},{aboutProps}){
                     </div>
                 )
             }):""}
+        </div>
+            
+            
+            
         </div>
     );
 }

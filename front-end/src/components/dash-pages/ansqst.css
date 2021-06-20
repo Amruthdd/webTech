@@ -26,6 +26,14 @@
     padding: 20px;
     transition: transform .3s;
     height: auto;
+    width: 120%;
+}
+
+.ansqst-ans-card{
+    padding: 20px;
+    transition: transform .3s;
+    height: auto;
+    width: 40%;
 }
 
 .ansqst-qst-card-in{
