@@ -24,9 +24,12 @@ export default function Questions(props){
                 "x-access-token": localStorage.getItem("token"),
             },
         }).then((response) => {
-            setDetails(response.data.result);
-            setCount(response.data.result.length);
-            console.log(response);
+            if(response.data.result!==undefined){
+                setDetails(response.data.result);
+                setCount(response.data.result.length);
+                console.log(response);
+            }
+            
         });
     }, []);
 

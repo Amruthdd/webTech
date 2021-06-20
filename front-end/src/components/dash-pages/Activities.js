@@ -28,6 +28,7 @@ function Activities(props){
                 "x-access-token": localStorage.getItem("token"),
             },
         }).then((response) => {
+            if(response.data.result!==undefined)
              setCountQ(response.data.result.length);
     });
     }, []);
@@ -37,7 +38,8 @@ function Activities(props){
                 "x-access-token": localStorage.getItem("token"),
             },
         }).then((response) => {
-            setCountA(response.data.result.length);
+            if(response.data.result!==undefined)
+                setCountA(response.data.result.length);
             // console.log(response);
         });
     }, []);

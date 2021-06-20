@@ -1,9 +1,47 @@
 .ansqst-main{
 
     color: #000;
-    text-align: center;
     background-color: #1E1D2B;
     color: #fff;
     padding: 5rem;
     width: 100vw;
 }
+
+.ansqst-qst{
+    display: inline-block;
+    /* float: left; */
+    width:80%;
+    padding: 0.5rem;
+    margin-bottom: 1vw;
+}
+
+.ansqst-qst-name{
+    float: left;
+    font-size: 0.8rem;
+    display: inline-flex;
+    margin-top: 5px;
+}
+
+.ansqst-qst-card{
+    padding: 20px;
+    transition: transform .3s;
+    height: auto;
+}
+
+.ansqst-qst-card-in{
+    padding: 1rem;
+    background-color: #2B2C3E;
+    border-radius: 16px 16px;
+    
+}
+
+.ansqst-iin {
+    width: 100%;
+    padding: 12px;
+    border-radius: 16px;
+    border:none;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+  }
