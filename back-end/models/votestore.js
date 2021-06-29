@@ -3,25 +3,19 @@ const sequelize = require('../util/database');
 
 
 
-const answertable = sequelize.define('answertable',{
+const votestoretable = sequelize.define('votestoretable',{
     
-    answerid: {
+    votersid: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     
-    answer: {
-        type:Sequelize.TEXT('long'),
+    voter: {
+        type: Sequelize.STRING,
         allowNull:false
-
-    },
-    votes: {
-        type:Sequelize.INTEGER,
-        
-    },
-   
+    }
     
 });
 
-module.exports=answertable;
+module.exports=votestoretable;

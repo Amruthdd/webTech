@@ -8,6 +8,7 @@ const sequelize = require("./util/database");
 const user = require("./models/user");
 const questiontable = require("./models/questiontable");
 const answertable = require("./models/answertable");
+const votestoretable = require("./models/votestore");
 const app = express();
 const bcrypt = require("bcrypt");
 const multer = require('multer');
@@ -32,7 +33,11 @@ answertable.belongsTo(questiontable, {
     constraints: true,
     onDelete: 'CASCADE'
 });
-
+answertable.hasMany(votestoretable);
+votestoretable.belongsTo(answertable, {
+    constraints: true,
+    onDelete: 'CASCADE'
+})
 
 // app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -277,7 +282,7 @@ app.get("/question", verifyJWT, questioncontroller.getquestionhome);
 
 app.get("/answer/:questionid", verifyJWT, answercontroller.answersofq)
 
-app.post("/votes/:answerid", verifyJWT,answercontroller.addvotes)
+app.post("/votes/user", verifyJWT,answercontroller.addvotes)
 app.post("/question/user", verifyJWT, questioncontroller.createquestion);
 app.put("/question/user", verifyJWT, questioncontroller.updatequestion)
 
