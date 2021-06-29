@@ -35,6 +35,15 @@ const user = sequelize.define('user',{
     image: {
         type:Sequelize.STRING,
     
+    },
+    bio: {
+         type:Sequelize.STRING
+    },
+    gradYear: {
+         type:Sequelize.INTEGER
+    },
+    location: {
+         type:Sequelize.STRING
     }
 });
 
