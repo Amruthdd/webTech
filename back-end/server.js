@@ -198,7 +198,8 @@ app.get("/:email/user", verifyJWT, (req, res, next) => {
                 email: user.email,
                 department: user.department,
                 fullname: user.fullname,
-                image: user.image
+                image: user.image,
+                joined:user.createdAt
             });
         })
         .catch((err) => {

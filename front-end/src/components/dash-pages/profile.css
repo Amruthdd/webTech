@@ -21,7 +21,8 @@
 }
 
 .profile-size {
-    max-width: 50rem;
+    width: 500px;
+    margin-right: 30px;
 }
 
 .profile-page-icon{
@@ -37,9 +38,9 @@
 
 }
 .profile-img{
-    background: url("../assets/new-profile-vector-large.svg");
+    /* background: url("../assets/new-profile-vector-large.svg");
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: contain; */
     width: 85px;
     height:85px;
     border-radius: 100%;
@@ -78,4 +79,97 @@ img[src=""] {
     border-radius: 100%;
     border: solid 3px #2B2C3E;
     
+}
+.edit-prof{
+    background: #404251;
+    border-radius: 100px;
+    border:none;
+    color: rgba(255, 255, 255, 0.51);
+    font-size: 14px;
+    padding: 5px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.prof-count{
+    display: flex;
+    margin-top: 30px;
+    margin-left: 10px;
+    padding-bottom: 15%;
+}
+.profile-main{
+   
+    padding-left: 60px;
+    height: 110vh;
+    
+}
+.prof-sub-main{
+    display: flex;
+}
+.prof-loc{
+
+    margin-top: 8%;
+    width: 336px;
+    height: 162px;
+    background-color: #2B2C3E;
+    border-radius: 16px;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.51);
+    
+}
+.loc-text{
+    color: #06E6B1;
+    background: none;
+    border:none
+}
+.loc-text:hover{
+    color: #06c699;
+}
+.count-box{
+    height: 90px;
+    width: 220px;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    border-radius: 10px;
+    
+}
+.cb1{
+    background: linear-gradient(100.02deg, #06E0AC 2.2%, #05ADB8 98.9%);
+}
+.cb2{
+    background: linear-gradient(100.02deg, #9640EE 2.2%, #5A40EE 98.9%);
+}
+.count{
+    font-family: Gilroy-SemiBold;
+    font-size: 48px;
+    line-height: 56px;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+.prof-mod-btn{
+    background: #404251;
+    border-radius: 12px;
+    border: none;
+    color: #fff;
+    height: 38px;
+    font-size: 13px;
+    text-align: center;
+    padding: 0 12px;
+    width: 200px;
+    margin-top: 0;
+    margin-left: 5px;
+}
+.bio{
+    color: rgba(255, 255, 255, 0.51);
+    font-size: 12px;
 }
