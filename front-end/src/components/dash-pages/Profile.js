@@ -18,9 +18,9 @@ function Profile(props) {
     const [countQ, setCountQ] = useState(0);
     const [countA, setCountA] = useState(0);
     const [joined,setJoined] =useState("");
-    const [gradu,setGradu] =useState("Add your graduation Year");
-    const [loc,setLoc] =useState("Add your location");
-    const [bio,setBio] =useState("You haven’t added a description about yourself");
+    const [gradu,setGradu] =useState("");
+    const [loc,setLoc] =useState("");
+    const [bio,setBio] =useState("");
     
    
 
@@ -35,15 +35,8 @@ function Profile(props) {
             console.log(response.data);
             console.log(src);
             // setJoined(details.joined.split("T"))
-            if(details.gradu){
-                setGradu(details.gradu);
-            }
-            if(details.location){
-                setLoc(details.loc);
-            }
-            if(details.bio){
-                setBio(details.bio);
-            }
+            
+            
             
         });
     }, []);
@@ -69,6 +62,7 @@ function Profile(props) {
             // console.log(response);
         });
     }, []);
+    
     return (
         
         <div className='my-5 container user-select-none overflow-hidden profile-main prof-sub-main'>
@@ -157,9 +151,8 @@ function Profile(props) {
                     </div>
                     </div>
                     <div>About Me</div>
-                    <div className="bio">{bio}</div>
-                     <div className='profile-center'>
-                        <div>{details.bio}</div>
+                     <div className='profile-center bio'>
+                        <div>{details.bio?details.bio:"You haven’t added a description about yourself"}</div>
                         
                     </div>
                     
@@ -183,7 +176,7 @@ function Profile(props) {
                         type='button'
                         data-toggle='modal'
                         data-target='#ProfEditModal'
-                    >{gradu}</button>
+                    >{details.gradYear?details.gradYear:"Add your graduation year"}</button>
                 </div>
                 <div className="d-flex my-2">
                     <IoLocationOutline size={20}/>
@@ -192,7 +185,7 @@ function Profile(props) {
                         type='button'
                         data-toggle='modal'
                         data-target='#ProfEditModal'
-                    >{loc}</button>
+                    >{details.location?details.location:"Add your location"}</button>
                 </div>
                 {/* <div className="d-flex my-2">
                     <FaRegCalendar size={20}/>

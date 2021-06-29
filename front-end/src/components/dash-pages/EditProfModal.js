@@ -6,13 +6,15 @@ import { Link, Redirect } from "react-router-dom";
 
 
 function EditProfModal(props) {
-    // console.log(props.data);
+    console.log(props.data);
+    
+
 
     const [bio, setBio] = useState(props.data.bio);
     const [loc, setLoc] = useState(props.data.loc);
     const [gradu, setGradu] = useState(props.data.gradYear);
     const [fullname, setFullname] = useState(props.data.fullname);
-    const [department,setDepartment] = useState(props.data.department);
+    const [department,setDepartment] = useState("select department");
     const token = localStorage.getItem("token");
     const email = localStorage.getItem("email");
 
@@ -29,6 +31,7 @@ function EditProfModal(props) {
                 "x-access-token": localStorage.getItem("token"),
             },
             body: JSON.stringify({
+                email:email,
                 fullname:fullname,
                 bio:bio,
                 location:loc,
@@ -43,6 +46,7 @@ function EditProfModal(props) {
                 else if (r.status == 401) alert("Authentication error!");
             })
             .catch((err) => console.log(err));
+            window.location.reload(false);
 
     };
     if (!token) {
@@ -59,7 +63,7 @@ function EditProfModal(props) {
                         <input
                             className='form-control px-3 mb-4'
                             type='text'
-                            placeholder={fullname}
+                            placeholder={props.data.fullname}
                             name='fullname'
                             required
                             onChange={(e) => {
