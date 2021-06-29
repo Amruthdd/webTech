@@ -198,7 +198,10 @@ app.get("/:email/user", verifyJWT, (req, res, next) => {
                 email: user.email,
                 department: user.department,
                 fullname: user.fullname,
-                image: user.image
+                image: user.image,
+                bio: user.bio,
+                location:user.location,
+                gradYear:user.gradYear
             });
         })
         .catch((err) => {
@@ -247,8 +250,8 @@ app.post('/user/update', verifyJWT, (req, res, next) => {
     user.findByPk(req.body.email)
         .then((user) => {
             user.update({
-                fullname: req.body.name,
-                bio: req.body.name,
+                fullname: req.body.fullname,
+                bio: req.body.bio,
                 location: req.body.location,
                 department: req.body.department,
                 gradYear:req.body.graduationYear
