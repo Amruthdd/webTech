@@ -93,13 +93,17 @@ exports.deletequestion = (req, res, next) => {
 }
 
 exports.updatequestion = (req, res, next) => {
+    
     questiontable.findByPk(req.body.questionid)
         .then((q) => {
             q.update({
                     question: req.body.question,
                     category: req.body.category
                 })
-                .then(r => res.sendStatus(200))
+                .then(r => {
+                   
+                    res.sendStatus(200)
+                })
                 .catch((err) => {
                     next(err);
                 })

@@ -124,7 +124,7 @@ app.post("/signup", async (req, res, next) => {
         })
         .then((r) => {
 
-            const username = user.fullname;
+            const username = r.fullname;
             const token = jwt.sign({
                 username
             }, process.env.SECRET, {
@@ -243,6 +243,27 @@ app.post("/dp/:email", verifyJWT, (req, res, next) => {
 
 })
 
+app.post('/user/update', verifyJWT, (req, res, next) => {
+    user.findByPk(req.body.email)
+        .then((user) => {
+            user.update({
+                fullname: req.body.name,
+                bio: req.body.name,
+                location: req.body.location,
+                department: req.body.department,
+                gradYear:req.body.graduationYear
+            })
+                .then((r) => {
+                    res.sendStatus(200);
+                })
+                .catch((err) => {
+                    next(err);
+            })
+        })
+        .catch((err) => {
+            next(err);
+    })
+})
 
 
 app.get("/explore/questions", verifyJWT, questioncontroller.exploreallquestions)
