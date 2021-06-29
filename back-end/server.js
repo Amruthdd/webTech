@@ -34,8 +34,8 @@ answertable.belongsTo(questiontable, {
 });
 
 
-app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 const filestorage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'images');
@@ -124,7 +124,7 @@ app.post("/signup", async (req, res, next) => {
         })
         .then((r) => {
 
-            const username = user.fullname;
+            const username = r.fullname;
             const token = jwt.sign({
                 username
             }, process.env.SECRET, {
@@ -199,7 +199,9 @@ app.get("/:email/user", verifyJWT, (req, res, next) => {
                 department: user.department,
                 fullname: user.fullname,
                 image: user.image,
-                joined:user.createdAt
+                bio: user.bio,
+                location:user.location,
+                gradYear:user.gradYear
             });
         })
         .catch((err) => {
@@ -244,6 +246,27 @@ app.post("/dp/:email", verifyJWT, (req, res, next) => {
 
 })
 
+app.post('/user/update', verifyJWT, (req, res, next) => {
+    user.findByPk(req.body.email)
+        .then((user) => {
+            user.update({
+                fullname: req.body.fullname,
+                bio: req.body.bio,
+                location: req.body.location,
+                department: req.body.department,
+                gradYear:req.body.graduationYear
+            })
+                .then((r) => {
+                    res.sendStatus(200);
+                })
+                .catch((err) => {
+                    next(err);
+            })
+        })
+        .catch((err) => {
+            next(err);
+    })
+})
 
 
 app.get("/explore/questions", verifyJWT, questioncontroller.exploreallquestions)
