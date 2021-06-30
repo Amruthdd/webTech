@@ -71,28 +71,6 @@ function AnswerQst({match},{aboutProps}){
         const u = localStorage.getItem("email");
 
 
-        // Axios.post(`http://localhost:8001/votes/user`, {
-        //     headers: {
-        //         'content-type':'application/json',
-        //         "x-access-token": localStorage.getItem("token"),
-        //     },
-        //     body:JSON.stringify({
-                
-        //         email:u,
-        //         id:id
-        //     })
-
-            
-        // }).then((r) => {
-        //     console.log(r);
-        //     if (r.status == 200) {
-        //         alert("Vote added Successfully");
-        //     } else if (r.status == 403) alert("You Already Voted");
-        //     else if (r.status == 401) alert("Authentication error");
-        // })
-        // .catch((err) => console.log(err));
-
-
 
         fetch(`http://localhost:8001/votes/user`, {
             method: "POST",
@@ -113,7 +91,7 @@ function AnswerQst({match},{aboutProps}){
                 else if (r.status == 401) alert("Authentication error");
             })
             .catch((err) => console.log(err));
-        // window.location.reload(false);
+        window.location.reload(false);
 
     };
 
@@ -250,7 +228,7 @@ function AnswerQst({match},{aboutProps}){
                                     <span className="vote-count">{item.votes?item.votes:0}</span>
                                     
                                     
-                                    <Icon icon={arrowDown24Filled} />
+                                    {/* <Icon icon={arrowDown24Filled} /> */}
                                     </div>
                                     {/* <div>
                                         asked by <span style={{color:"#06E6B1",fontSize:12}}>{item.user}</span>

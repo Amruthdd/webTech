@@ -90,7 +90,7 @@ function Dash(props){
                                     <span className="vote-count">{item.answervotes}</span>
                                     
                                     
-                                    <Icon icon={arrowDown24Filled} />
+                                    
                                     </div>
                                     <div>
                                         asked by <span style={{color:"#06E6B1",fontSize:12}}>{item.user}</span>
