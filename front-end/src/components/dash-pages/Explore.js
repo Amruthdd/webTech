@@ -46,7 +46,8 @@ function Explore(props){
                                     pathname:`/index/Explore/${item.questionid}`,
                                     state: {
                                         question: item.question, 
-                                        user:item.user
+                                        user:item.user,
+                                        category:item.category
                                       }
                                 }}
                                 

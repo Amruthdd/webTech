@@ -53,3 +53,8 @@
     margin-bottom: 16px;
     resize: vertical;
   }
+  .vote-btn{
+      border: none;
+      background: none;
+      color: rgba(255, 255, 255, 0.51);
+  }
