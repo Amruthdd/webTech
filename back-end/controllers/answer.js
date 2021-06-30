@@ -26,7 +26,7 @@ exports.answersofq =  (req, res, next) => {
             res.status(200).json({
                 result: result
             });
-            console.log(result);
+            
         })
         .catch((err) => {
             next(err);
@@ -39,11 +39,10 @@ exports.addvotes = (req, res, next) => {
             if (user.length == 0) {
                 try {
                     const vote = await votestoretable.create({ voter: req.body.email, answertableAnswerid: req.body.id });
-                    const answer = await answertable.findByPk(id);
-                    var v = answer.votes;
-                    v = v + 1;
-                    answer.votes = v;
-                    return res.json({votes:answer.votes})
+                    const answer = await answertable.findByPk(req.body.id);
+                   await  answer.increment('votes')
+                        
+                    return res.sendStatus(200);
                 } catch (err) {
                     next(err);
                 }

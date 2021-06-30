@@ -17,7 +17,8 @@ const answertable = sequelize.define('answertable',{
 
     },
     votes: {
-        type:Sequelize.INTEGER,
+        type: Sequelize.INTEGER,
+        defaultValue:0
         
     },
    
