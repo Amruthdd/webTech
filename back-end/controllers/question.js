@@ -214,3 +214,7 @@ exports.exploreallquestions = (req, res, next) => {
         });
 
 }
+
+// Encounter.findAll({ order: Sequelize.literal('rand()'), limit: 5 }).then((encounters) => {
+//         // single random encounter
+//     }); 
