@@ -40,7 +40,9 @@ exports.addvotes = (req, res, next) => {
                 try {
                     const vote = await votestoretable.create({ voter: req.body.email, answertableAnswerid: req.body.id });
                     const answer = await answertable.findByPk(id);
-                    answer.votes = answer.votes + 1;
+                    var v = answer.votes;
+                    v = v + 1;
+                    answer.votes = v;
                     return res.json({votes:answer.votes})
                 } catch (err) {
                     next(err);
