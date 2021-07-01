@@ -121,3 +121,38 @@ exports.answeractivity =  (req, res, next) => {
 
 
 }
+
+exports.deleteanswer = (req, res, next) => {
+
+     answertable.destroy({
+            where: {
+                answerid: req.body.answerid
+            }
+        })
+        .then((r) => {
+            res.sendStatus(200);
+
+        })
+        .catch((err) => {
+            next(err);
+        })
+}
+
+exports.updateanswer = (req, res, next) => {
+    
+     answertable.findByPk(req.body.answeridid)
+        .then((q) => {
+            q.update({
+                    answer: req.body.answer,
+                    
+                })
+                .then(r => {
+                   
+                    res.sendStatus(200)
+                })
+                .catch((err) => {
+                    next(err);
+                })
+        })
+
+}

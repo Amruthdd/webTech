@@ -22,7 +22,7 @@ const promise1 = (r) => {
                         ]
                     })
                     .then((r) => {
-                        console.log(r);
+                       
                         var qaobject = new Object();
                         qaobject.question = e.dataValues.question;
                         qaobject.questionid = e.dataValues.questionid;
