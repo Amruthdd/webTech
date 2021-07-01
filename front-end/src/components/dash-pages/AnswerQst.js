@@ -16,11 +16,19 @@ function AnswerQst({match},{aboutProps}){
     const [src,setSrc] = useState(null);
     const [answer,setAnswer] = useState("");
     const [answerid,setAnswerid] = useState();
+    const [category, setCategory] = useState();
     let location = useLocation();
     const [answerClicked, setAnswerClicked] = useState(false);
+    const [relQst, setRelQst] = useState();
+    
     function handleAnswerClicked(){
         setAnswerClicked(true);
     }
+
+    // if(location.state!==undefined){
+    //     setCategory(location.state.category);
+    // }
+    
 
     function handleCancelClicked(){
         setAnswerClicked(false);
@@ -39,6 +47,23 @@ function AnswerQst({match},{aboutProps}){
             // console.log(response.data);
         });
     }, []);
+
+    useEffect(() => {
+        // setCategory(location.state.category);
+            Axios.get(`http://localhost:8001/related/${location.state.category}`, {
+                headers: {
+                    "x-access-token": localStorage.getItem("token"),
+                },
+            }).then((response) => {
+                setRelQst(response.data.relatedquestions);
+                // setSrc('http://localhost:8001/'+ response.data.image);
+                console.log(response);
+                // console.log(location);
+                // console.log(response.data);
+            });
+        }, []);
+    
+    
 
     const uploadAnswer = (e) => {
         
@@ -102,7 +127,7 @@ function AnswerQst({match},{aboutProps}){
 
     return (
         <div className="ansqst-main">
-        <Row><Col className="col-lg-6">
+        <Row><Col className="col-lg-5">
         <div>
             {/* <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
@@ -224,26 +249,32 @@ function AnswerQst({match},{aboutProps}){
             }):""}
         </div>
         </Col>
-        <Col className="col-lg-6">
+        <Col className="col-lg-7">
         <div >
             
-            {details!==undefined?details.map((item) =>{
-                return(
+            
                     <div>
                         <div className="relatedqst-card">
                                 <div className="relatedqst-card-in">
+
                                     <h6 style={{marginBottom:"15px"}}>Related Questions</h6>
-                                    <Link 
-                                className="relatedqst-link" 
-                                to={{
-                                    pathname:`/index/Home/${item.questionid}`,
-                                    state: {
-                                        question: item.question, 
-                                        user:item.user
-                                      }
-                                }}
-                                
-                            >A</Link>
+
+                                {relQst===undefined?"":
+                                relQst.map((val)=>{
+                                    return (<Link 
+                                        className="relatedqst-link" 
+                                        to={{
+                                            pathname:`/index/Home/${val.questionid}`,
+                                            state: {
+                                                question: val.question, 
+                                                user:val.user
+                                              }
+                                        }}
+                                        
+                                    >{val.question}</Link>)
+                                })
+                                }
+                                    
                                 </div>
 
                                 
@@ -251,8 +282,8 @@ function AnswerQst({match},{aboutProps}){
                      
                     
                     </div>
-                )
-            }):""}
+                
+            
         </div>
         </Col>
         </Row>    
