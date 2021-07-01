@@ -8,6 +8,7 @@ const sequelize = require("./util/database");
 const user = require("./models/user");
 const questiontable = require("./models/questiontable");
 const answertable = require("./models/answertable");
+const votestoretable = require("./models/votestore");
 const app = express();
 const bcrypt = require("bcrypt");
 const multer = require('multer');
@@ -32,10 +33,14 @@ answertable.belongsTo(questiontable, {
     constraints: true,
     onDelete: 'CASCADE'
 });
+answertable.hasMany(votestoretable);
+votestoretable.belongsTo(answertable, {
+    constraints: true,
+    onDelete: 'CASCADE'
+})
 
-
-app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 const filestorage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'images');
@@ -124,7 +129,7 @@ app.post("/signup", async (req, res, next) => {
         })
         .then((r) => {
 
-            const username = user.fullname;
+            const username = r.fullname;
             const token = jwt.sign({
                 username
             }, process.env.SECRET, {
@@ -198,7 +203,10 @@ app.get("/:email/user", verifyJWT, (req, res, next) => {
                 email: user.email,
                 department: user.department,
                 fullname: user.fullname,
-                image: user.image
+                image: user.image,
+                bio: user.bio,
+                location:user.location,
+                gradYear:user.gradYear
             });
         })
         .catch((err) => {
@@ -243,6 +251,27 @@ app.post("/dp/:email", verifyJWT, (req, res, next) => {
 
 })
 
+app.post('/user/update', verifyJWT, (req, res, next) => {
+    user.findByPk(req.body.email)
+        .then((user) => {
+            user.update({
+                fullname: req.body.fullname,
+                bio: req.body.bio,
+                location: req.body.location,
+                department: req.body.department,
+                gradYear:req.body.graduationYear
+            })
+                .then((r) => {
+                    res.sendStatus(200);
+                })
+                .catch((err) => {
+                    next(err);
+            })
+        })
+        .catch((err) => {
+            next(err);
+    })
+})
 
 
 app.get("/explore/questions", verifyJWT, questioncontroller.exploreallquestions)
@@ -253,7 +282,7 @@ app.get("/question", verifyJWT, questioncontroller.getquestionhome);
 
 app.get("/answer/:questionid", verifyJWT, answercontroller.answersofq)
 
-app.post("/votes/:answerid", verifyJWT,answercontroller.addvotes)
+app.post("/votes/user", verifyJWT,answercontroller.addvotes)
 app.post("/question/user", verifyJWT, questioncontroller.createquestion);
 app.put("/question/user", verifyJWT, questioncontroller.updatequestion)
 

@@ -11,6 +11,7 @@ function AnswerQst({match},{aboutProps}){
     const [details, setDetails] = useState([]);
     const [src,setSrc] = useState(null);
     const [answer,setAnswer] = useState("");
+    const [answerid,setAnswerid] = useState();
     let location = useLocation();
     const [answerClicked, setAnswerClicked] = useState(false);
     function handleAnswerClicked(){
@@ -39,6 +40,7 @@ function AnswerQst({match},{aboutProps}){
         
        
         const u = localStorage.getItem("email");
+        
 
         fetch(`http://localhost:8001/answer/user`, {
             method: "POST",
@@ -55,13 +57,45 @@ function AnswerQst({match},{aboutProps}){
             .then((r) => {
                 if (r.status == 200) {
                     alert("Answer added successfully");
-                } else if (r.status == 422) alert("Invalid File format");
+                } else if (r.status == 422) alert("Invalid");
                 else if (r.status == 401) alert("Authentication error");
             })
             .catch((err) => console.log(err));
         window.location.reload(false);
 
     };
+
+    const voteAnswer = (id) => {
+        
+        console.log(id);
+        const u = localStorage.getItem("email");
+
+
+
+        fetch(`http://localhost:8001/votes/user`, {
+            method: "POST",
+            headers: {
+                'content-type':'application/json',
+                "x-access-token": localStorage.getItem("token"),
+            },
+            body: JSON.stringify({
+                
+                email:u,
+                id:id
+            }),
+        })
+            .then((r) => {
+                if (r.status == 200) {
+                    alert("You voted the answer");
+                } else if (r.status == 403) alert("You Already Voted");
+                else if (r.status == 401) alert("Authentication error");
+            })
+            .catch((err) => console.log(err));
+        window.location.reload(false);
+
+    };
+
+
     return (
         <div className="ansqst-main">
             
@@ -82,11 +116,11 @@ function AnswerQst({match},{aboutProps}){
                                 </div>
                                 <div>
                                     <div>{location.state.user}</div>
-                                    {/* <div style={{fontSize:10,color:"gray"}}>asked in{" "} 
+                                    <div style={{fontSize:10,color:"gray"}}>asked in{" "} 
                                         <span style={{color:"#06F2B0"}}>
-                                        {location.state}
+                                        {location.state.category}
                                         </span>
-                                    </div> */}
+                                    </div>
                                 </div>
 
                             </div>
@@ -181,12 +215,20 @@ function AnswerQst({match},{aboutProps}){
 
                                 <div className="vote-bar">
                                     <div>
-                                    <Icon icon={arrowUp24Filled} />
+                                        <button
+                                            className="vote-btn"
+                                            onClick={()=>{
+                                                voteAnswer(item.answerid)
+                                            }}
+                                        >
+                                            <Icon icon={arrowUp24Filled}/>
+                                        </button>
+                                    
 
-                                    <span className="vote-count">{item.votes}</span>
+                                    <span className="vote-count">{item.votes?item.votes:0}</span>
                                     
                                     
-                                    <Icon icon={arrowDown24Filled} />
+                                    {/* <Icon icon={arrowDown24Filled} /> */}
                                     </div>
                                     {/* <div>
                                         asked by <span style={{color:"#06E6B1",fontSize:12}}>{item.user}</span>

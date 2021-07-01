@@ -118,7 +118,7 @@ function Login() {
                     </div>
                     
                 </div>
-                <div className='col-12 col-md-6 order-sm-1'>
+                <div className='col-12 col-md-6 order-sm-1 my-3 py-5'>
                     {/* <figure className='login-data-rafiki'></figure> */}
                     <div className="log-title">
                         <figure className='ask-cet'></figure>

@@ -50,8 +50,8 @@ function SignUp() {
             <figure className='dot-left'></figure>
             <figure className='dot-bottom'></figure>
             <figure className='ppl-bottom'></figure>
-            <div className='row px-md-5'>
-                <div className='col-12 col-md-6 order-md-2 my-5 px-xl-5'>
+            <div className='row px-md-5 my-5'>
+                <div className='col-12 col-md-6 order-sm-2 my-5 px-xl-5'>
                     <div className='d-flex justify-content-center mx-auto w-75'>
                     <div className='dark-blue-text'>
                             <Link to='/' draggable='false'>
@@ -62,7 +62,15 @@ function SignUp() {
                        
                     </div>
                     <div className='mx-auto py-4 log-box-main'>
-                    
+                        <div className="py-2">
+                            <div className="wlcm">Welcome</div>
+                            <div className='wlcm-p'>
+                                Already have an account?&nbsp;
+                                <Link to='/' draggable='false' style={{color:"#06F2B0"}}>
+                                Sign up
+                                </Link>
+                            </div>
+                        </div>
                         <form
                             className='mx-auto form-group col-10'
                             onSubmit={register}
@@ -136,12 +144,12 @@ function SignUp() {
                             </p>
                         </form>
                     </div>
-                    <div className='text-center m-4 onboarding-desc'>
+                    {/* <div className='text-center m-4 onboarding-desc'>
                         Already have an account?&nbsp;
                         <Link to='/' draggable='false' style={{color:"#06F2B0"}}>
                             Log in
                         </Link>
-                    </div>
+                    </div> */}
                 </div>
                 <div className='col-12 col-md-6 order-sm-1'>
                     {/* <figure className='login-data-rafiki'></figure> */}

@@ -73,7 +73,7 @@ export default function Answers(props){
                             <span className="vote-count">{item.votes}</span>
                             
                             
-                            <Icon icon={arrowDown24Filled} />
+                           
                             </div>
                             
                             

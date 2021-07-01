@@ -2,7 +2,7 @@ const sequelize = require("../util/database");
 const questiontable = require("../models/questiontable");
 const user = require("../models/user")
 const answertable = require("../models/answertable")
-
+const votestoretable = require('../models/votestore');
 
 exports.answersofq =  (req, res, next) => {
     answertable.findAll({
@@ -26,22 +26,39 @@ exports.answersofq =  (req, res, next) => {
             res.status(200).json({
                 result: result
             });
-            console.log(result);
+            
         })
         .catch((err) => {
             next(err);
         })
 }
 
-exports.addvotes =  (req, res, next) => {
-    answertable.findByPk(req.params.answerid)
-        .then((answer) => {
-            answer.votes += 1;
-
+exports.addvotes = (req, res, next) => {
+    votestoretable.findAll({ where: { voter: req.body.email,answertableAnswerid: req.body.id } })
+        .then(async(user) => {
+            if (user.length == 0) {
+                try {
+                    const vote = await votestoretable.create({ voter: req.body.email, answertableAnswerid: req.body.id });
+                    const answer = await answertable.findByPk(req.body.id);
+                   await  answer.increment('votes')
+                        
+                    return res.sendStatus(200);
+                } catch (err) {
+                    next(err);
+                }
+            }
+              
+            else {
+                const error =new Error('u already voted');
+                error.statusCode = 403;
+                throw error;
+            }
+           
         })
-        .catch((err) => {
-            next(err);
-        })
+     .catch ((err) =>{
+         next(err);
+            })
+   
 }
 
 exports.answerofuser =  (req, res, next) => {

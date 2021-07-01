@@ -75,6 +75,7 @@ exports.getquestionhome = async (req, res, next) => {
 }
 
 
+
 exports.deletequestion = (req, res, next) => {
 
     questiontable.destroy({
@@ -92,13 +93,17 @@ exports.deletequestion = (req, res, next) => {
 }
 
 exports.updatequestion = (req, res, next) => {
+    
     questiontable.findByPk(req.body.questionid)
         .then((q) => {
             q.update({
                     question: req.body.question,
                     category: req.body.category
                 })
-                .then(r => res.sendStatus(200))
+                .then(r => {
+                   
+                    res.sendStatus(200)
+                })
                 .catch((err) => {
                     next(err);
                 })
@@ -182,6 +187,7 @@ exports.getquestionbycategory = (req, res, next) => {
         })
 }
 
+
 exports.exploreallquestions = (req, res, next) => {
     questiontable
         .findAll({
@@ -208,3 +214,7 @@ exports.exploreallquestions = (req, res, next) => {
         });
 
 }
+
+// Encounter.findAll({ order: Sequelize.literal('rand()'), limit: 5 }).then((encounters) => {
+//         // single random encounter
+//     }); 
