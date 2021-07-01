@@ -6,6 +6,10 @@ import "./ansqst.css"
 import { Icon, InlineIcon } from '@iconify/react';
 import arrowUp24Filled from '@iconify/icons-fluent/arrow-up-24-filled';
 import arrowDown24Filled from '@iconify/icons-fluent/arrow-down-24-filled';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
+
 function AnswerQst({match},{aboutProps}){
 
     const [details, setDetails] = useState([]);
@@ -98,15 +102,137 @@ function AnswerQst({match},{aboutProps}){
 
     return (
         <div className="ansqst-main">
-            
-                <div>
-            <ResponsiveMasonry
+        <Row><Col className="col-lg-6">
+        <div>
+            {/* <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
             >
-                <Masonry>
+                <Masonry> */}
                 
 
-                    <div className="ansqst-qst-card">
+                    <div className="ansqst-qst-card" style={{width:"90%"}}>
+                        <div className="ansqst-qst-card-in">
+                           
+                            <div className="ansqst-qst-name">
+                                <div>
+                                <figure className='person-icon'></figure>
+
+                                </div>
+                                {location.state===undefined?"":
+                                <div>
+                                    <div>{location.state.user}</div>
+                                    <div style={{fontSize:10,color:"gray"}}>asked in{" "} 
+                                        <span style={{color:"#06F2B0"}}>
+                                        {location.state.category}
+                                        </span>
+                                    </div>
+                                    
+                                </div>}
+
+                            </div>
+                            
+                            <div className="ansqst-qst">{location.state===undefined?"":location.state.question}</div>
+                            {answerClicked===false?<div><button
+                            className='btn start-btn col-2'
+                            onClick={handleAnswerClicked}
+                            type="submit"
+                        >
+                            Answer
+                    </button></div> :<div><textarea
+                            className='form-control ansqst-iin my-4'
+                            type='text'
+                            placeholder='Your answer'
+                            name='answer'
+                            onChange={(e) => {
+                                setAnswer(e.target.value);
+                            }}
+                            required
+                    ></textarea>
+                    <button
+                            className='btn start-btn col-3'
+                            onClick={uploadAnswer}
+                            type="submit"
+                            style={{margin:"1vw 8vw 1vw 1vw", fontSize:"0.9rem"}}
+                        >
+                            Post 
+                    </button>
+                    <button
+                            className='btn btn-outline-secondary col-3'
+                            onClick={handleCancelClicked}
+                            type="submit"
+                            style={{margin:"1vw 0 1vw 1vw", fontSize:"0.9rem", borderRadius:"18px"}}
+                        >
+                            Cancel
+                    </button></div>} 
+                                                  
+                            
+                        </div>
+
+                    </div>
+                    
+            <h6>Previous answers({details!==undefined?details.length:""})</h6>
+            {details!==undefined?details.map((item) =>{
+                return(
+                    <div>
+                        <div className="ansqst-ans-card">
+                                <div className="qst-card-in">
+                                    
+                                    <div className="qst-name">
+                                        <div>
+                                          <figure className='person-icon'></figure>                                            
+                                            
+                                        </div>
+                                        <div>
+                                            <div>{item.answereduser}</div>
+                                           
+                                        </div>
+                                    </div>
+                                    <div className="qst-ans">
+                                        {item.answer}
+                                        
+                                    </div>
+                                </div>
+
+                                <div className="vote-bar">
+                                    <div>
+                                        <button
+                                            className="vote-btn"
+                                            onClick={()=>{
+                                                voteAnswer(item.answerid)
+                                            }}
+                                        >
+                                            <Icon icon={arrowUp24Filled}/>
+                                        </button>
+                                    
+
+                                    <span className="vote-count">{item.votes?item.votes:0}</span>
+                                    
+                                    
+                                    {/* <Icon icon={arrowDown24Filled} /> */}
+                                    </div>
+                                    {/* <div>
+                                        asked by <span style={{color:"#06E6B1",fontSize:12}}>{item.user}</span>
+                                    </div>    */}
+                                </div>
+
+                                
+                            </div>
+                     
+                    
+                    </div>
+                )
+            }):""}
+        </div>
+        </Col>
+        <Col className="col-lg-6">
+        <div >
+            {/* <ResponsiveMasonry
+                columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
+            >
+                <Masonry> */}
+                
+
+                    <div className="ansqst-qst-card" style={{width:"40%"}}>
                         <div className="ansqst-qst-card-in">
                            
                             <div className="ansqst-qst-name">
@@ -185,9 +311,9 @@ function AnswerQst({match},{aboutProps}){
                         </div> */}
                     </div>
                     
-                
+{/*                 
                 </Masonry>
-            </ResponsiveMasonry>
+            </ResponsiveMasonry> */}
             <h6>Previous answers({details!==undefined?details.length:""})</h6>
             {details!==undefined?details.map((item) =>{
                 return(
@@ -245,6 +371,9 @@ function AnswerQst({match},{aboutProps}){
                 )
             }):""}
         </div>
+        </Col>
+        </Row>    
+                
             
             
             

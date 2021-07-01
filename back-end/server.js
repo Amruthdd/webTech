@@ -310,7 +310,7 @@ app.use((error, req, res, next) => {
 
 
 sequelize
-    .sync({force: true})
+    .sync()
     .then((r) => {
         // console.log(r);
         app.listen(process.env.PORT || 8001);

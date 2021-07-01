@@ -114,7 +114,18 @@ export default function Questions(props){
                    return props.val===""?item.question:item.question.toLowerCase().includes((props.val).toLowerCase())?item:"";
                 }).map((item) => {
                     return(
-
+                        <Link 
+                                className="qst-link-card" 
+                                to={{
+                                    pathname:`/index/Explore/${item.questionid}`,
+                                    state: {
+                                        question: item.question, 
+                                        user:item.user,
+                                        category:item.category
+                                      }
+                                }}
+                                
+                            >
                     <div className="activities-qst-card">
                         <div className="act-qst-card-in">
                            
@@ -196,6 +207,7 @@ export default function Questions(props){
                             
                         </div> */}
                     </div>
+                    </Link>
                     )   
                 })}
                 </Masonry>

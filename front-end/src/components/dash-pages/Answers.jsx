@@ -5,7 +5,7 @@ import './activities.css';
 import { Icon, InlineIcon } from '@iconify/react';
 import arrowUp24Filled from '@iconify/icons-fluent/arrow-up-24-filled';
 import arrowDown24Filled from '@iconify/icons-fluent/arrow-down-24-filled';
-
+import EditAnswerModal from "./EditAnswerModal";
 
 export default function Answers(props){
     const [details, setDetails] = useState();
@@ -17,13 +17,31 @@ export default function Answers(props){
             },
         }).then((response) => {
             setDetails(response.data.result);
-            // console.log(response);
+            console.log(response);
         });
     }, []);
 
 
     return(
         <div>
+            <div
+                    className='modal fade'
+                    data-backdrop="false"
+                    id='EditAnswerModalCenter'
+                    tabindex='-1'
+                    role='dialog'
+                    aria-labelledby='EditQuestionModalCenterTitle'
+                    aria-hidden='true'
+                >
+                    <div
+                        className='modal-dialog modal-dialog-centered'
+                        role='document'
+                    >
+                        <div className='modal-content modal-main'>
+                            {/* {qst===undefined?"":<EditAnswerModal question={qst} id={qstId} category={category}/>} */}
+                        </div>
+                    </div>
+                </div>
             <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
             >
@@ -34,6 +52,39 @@ export default function Answers(props){
                     <div className="qst-card">
                         <div className="qst-card-in">
                             <div className="qst">{item.question}</div>
+                            <div className="dropdown" >
+                                <a class="menu-icon dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                            
+                            <figure className="menu-icon"/>
+                            </a>
+                            
+                            <div class="drop dropdown-menu dropdown-menu-right" id="dropdown" aria-labelledby="dropdownMenuLink" >
+                            <button
+                                className='btn dr-link dropdown-item'
+                                type='button'
+                                data-toggle='modal'
+                                data-target='#EditAnswerModalCenter'
+                                style={{marginRight:40}}
+                                // onClick={()=>{setQst(item.question); setQstId(item.questionid);  setCategory(item.category); console.log(qst);}}
+                                >
+                                    Edit
+                                </button>
+                                
+                                <button
+                                className='btn dr-link dropdown-item'
+                                type='button'
+                                data-toggle='modal'
+                                // data-target='#deleteAnswerModalCenter'
+                                style={{marginRight:40}}
+                                // onClick={
+                                //     ()=>{
+                                //     deleteQuestion(item.questionid)}
+                                // }
+                                >
+                                    Delete
+                                </button>
+                                
+                            </div>
+                </div>
                             <div className="qst-name">
                             
                                 <div className="activities-qst-name">
@@ -54,6 +105,7 @@ export default function Answers(props){
                                         </span>
                                     </div>
                                 </div>
+                                
                             </div>
                             </div>
                             <div className="qst-ans">
@@ -68,7 +120,9 @@ export default function Answers(props){
                         {/* <button
                             type='button' </button> */}
                             <div>
-                            <Icon icon={arrowUp24Filled} />
+                           
+                                            <Icon icon={arrowUp24Filled}/>
+                                       
 
                             <span className="vote-count">{item.votes}</span>
                             
