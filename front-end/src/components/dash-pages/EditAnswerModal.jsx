@@ -47,7 +47,7 @@ export default function EditQuestionModal(props) {
 
     return (
         <div className=' mx-5 my-3'>
-            <h5 className=' my-3'>Edit Your Question </h5>
+            <h5 className=' my-3'>Edit Your Answer </h5>
             <form className='form-group'>
                 <div class='form-group'>
                     

@@ -26,7 +26,6 @@
     padding: 20px;
     transition: transform .3s;
     height: auto;
-    width: 120%;
 }
 
 .ansqst-ans-card{
@@ -58,3 +57,29 @@
       background: none;
       color: rgba(255, 255, 255, 0.51);
   }
+
+  .relatedqst-card{
+    padding: 20px;
+    transition: transform .3s;
+    height: auto;
+    width: 60%;
+  }
+
+  .relatedqst-card-in{
+    padding: 1.5rem;
+    background-color: #2B2C3E;
+    border-radius: 16px 16px;
+    height: auto;
+    
+}
+
+.relatedqst-link{
+    color: #06F2B0;
+    display: block;
+    margin: 5px;
+}
+
+.relatedqst-link:hover{
+    color: #2d997a;
+    text-decoration: none;
+}

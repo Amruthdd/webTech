@@ -230,49 +230,20 @@ function AnswerQst({match},{aboutProps}){
             {details!==undefined?details.map((item) =>{
                 return(
                     <div>
-                        <div className="ansqst-ans-card">
-                                <div className="qst-card-in">
-                                    
-                                    <div className="qst-name">
-                                        <div>
-                                          <figure className='person-icon'></figure>                                            
-                                            
-                                        </div>
-                                        <div>
-                                            <div>{item.answereduser}</div>
-                                            {/* <div style={{fontSize:10,color:"gray"}}>from{" "} 
-                                                <span style={{color:"#06F2B0"}}>
-                                                    {item.category}
-                                                </span>
-                                            </div> */}
-                                        </div>
-                                    </div>
-                                    <div className="qst-ans">
-                                        {item.answer}
-                                        
-                                    </div>
-                                </div>
-
-                                <div className="vote-bar">
-                                    <div>
-                                        <button
-                                            className="vote-btn"
-                                            onClick={()=>{
-                                                voteAnswer(item.answerid)
-                                            }}
-                                        >
-                                            <Icon icon={arrowUp24Filled}/>
-                                        </button>
-                                    
-
-                                    <span className="vote-count">{item.votes?item.votes:0}</span>
-                                    
-                                    
-                                    {/* <Icon icon={arrowDown24Filled} /> */}
-                                    </div>
-                                    {/* <div>
-                                        asked by <span style={{color:"#06E6B1",fontSize:12}}>{item.user}</span>
-                                    </div>    */}
+                        <div className="relatedqst-card">
+                                <div className="relatedqst-card-in">
+                                    <h6 style={{marginBottom:"15px"}}>Related Questions</h6>
+                                    <Link 
+                                className="relatedqst-link" 
+                                to={{
+                                    pathname:`/index/Home/${item.questionid}`,
+                                    state: {
+                                        question: item.question, 
+                                        user:item.user
+                                      }
+                                }}
+                                
+                            >A</Link>
                                 </div>
 
                                 

@@ -23,6 +23,30 @@ export default function Answers(props){
         });
     }, []);
 
+    const deleteAnswer = (id) => {
+        
+
+        fetch(`http://localhost:8001/answer/user`, {
+            method: "DELETE",
+            headers: {
+                'content-type':'application/json',
+                "x-access-token": localStorage.getItem("token"),
+            },
+            body: JSON.stringify({
+                answerid:id
+            }),
+        })
+            .then((r) => {
+                if (r.status == 200) {
+                    alert("Question deleted successfully");
+                    window.location.reload();
+                } else if (r.status == 422) alert("Invalid File format");
+                else if (r.status == 401) alert("Authentication error");
+            })
+            .catch((err) => console.log(err));
+
+    };
+
 
     return(
         <div>
@@ -53,8 +77,7 @@ export default function Answers(props){
 
                     <div className="qst-card">
                         <div className="qst-card-in">
-                            <div className="qst">{item.question}</div>
-                            <div className="dropdown" >
+                        <div className="dropdown" >
                                 <a class="menu-icon dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                            
                             <figure className="menu-icon"/>
                             </a>
@@ -77,16 +100,18 @@ export default function Answers(props){
                                 data-toggle='modal'
                                 // data-target='#deleteAnswerModalCenter'
                                 style={{marginRight:40}}
-                                // onClick={
-                                //     ()=>{
-                                //     deleteQuestion(item.questionid)}
-                                // }
+                                onClick={
+                                    ()=>{
+                                    deleteAnswer(item.id)}
+                                }
                                 >
                                     Delete
                                 </button>
                                 
                             </div>
                 </div>
+                            <div className="qst">{item.question}</div>
+                            
                             <div className="qst-name">
                             
                                 <div className="activities-qst-name">

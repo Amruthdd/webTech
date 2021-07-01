@@ -114,18 +114,7 @@ export default function Questions(props){
                    return props.val===""?item.question:item.question.toLowerCase().includes((props.val).toLowerCase())?item:"";
                 }).map((item) => {
                     return(
-                        <Link 
-                                className="qst-link-card" 
-                                to={{
-                                    pathname:`/index/Explore/${item.questionid}`,
-                                    state: {
-                                        question: item.question, 
-                                        user:item.user,
-                                        category:item.category
-                                      }
-                                }}
-                                
-                            >
+                        
                     <div className="activities-qst-card">
                         <div className="act-qst-card-in">
                            
@@ -161,6 +150,7 @@ export default function Questions(props){
                                 
                             </div>
                 </div>
+                
                             
 
                             
@@ -185,29 +175,24 @@ export default function Questions(props){
                                     </div>
                                 </div>
                             </div>
+                            <Link 
+                                className="qst-link-card" 
+                                to={{
+                                    pathname:`/index/Explore/${item.questionid}`,
+                                    state: {
+                                        question: item.question, 
+                                        user:item.user,
+                                        category:item.category
+                                      }
+                                }}
+                                style={{fontSize:"smaller", display:"inline-block", marginRight:"50px", color:"#06F2B0"}}
+                            >
+                                View Answers
+                        </Link>
                         </div>
-
                         
-                        {/* <div className="vote-bar">
-
-                    
-                    
-
-                        <button
-                            type='button'> </button>
-                            <div>
-                            <Icon icon={arrowUp24Filled} />
-
-                            <span className="vote-count">10</span>
-                            
-                            
-                            <Icon icon={arrowDown24Filled} />
-                            </div>
-                            
-                            
-                        </div> */}
                     </div>
-                    </Link>
+                    
                     )   
                 })}
                 </Masonry>
