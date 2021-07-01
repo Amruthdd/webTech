@@ -114,6 +114,7 @@ function AnswerQst({match},{aboutProps}){
                                 <figure className='person-icon'></figure>
 
                                 </div>
+                                {location.state===undefined?"":
                                 <div>
                                     <div>{location.state.user}</div>
                                     <div style={{fontSize:10,color:"gray"}}>asked in{" "} 
@@ -121,11 +122,12 @@ function AnswerQst({match},{aboutProps}){
                                         {location.state.category}
                                         </span>
                                     </div>
-                                </div>
+                                    
+                                </div>}
 
                             </div>
                             
-                            <div className="ansqst-qst">{location.state.question}</div>
+                            <div className="ansqst-qst">{location.state===undefined?"":location.state.question}</div>
                             {answerClicked===false?<div><button
                             className='btn start-btn col-2'
                             onClick={handleAnswerClicked}

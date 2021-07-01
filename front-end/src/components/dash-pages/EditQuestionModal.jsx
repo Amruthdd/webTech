@@ -7,13 +7,17 @@ import { Link, Redirect } from "react-router-dom";
 
 export default function EditQuestionModal(props) {
     
-    const [question, setQuestion] = useState("");
+    const [question, setQuestion] = useState(props.question);
+    // const [tempQuestion, setTempQuestion] = useState(props.question);
     const [category, setCategory] = useState(props.category);
     const token = localStorage.getItem("token");
     const email = localStorage.getItem("email");
 
     const editQuestion = (e) => {
+
         const token = localStorage.getItem("token");
+        
+        
         fetch('http://localhost:8001/question/user', {
             method: "PUT",
             headers: {
@@ -37,6 +41,11 @@ export default function EditQuestionModal(props) {
     };
     if (!token) {
         return <Redirect to='/login' />;
+    }
+
+    function reload(){
+        window.location.reload();
+
     }
 
     return (
@@ -65,6 +74,7 @@ export default function EditQuestionModal(props) {
                         defaultValue={props.question}
                         onChange={(e) => {
                             setQuestion(e.target.value);
+                            console.log(props.question);
                         }}
                         required
                     ></textarea>
@@ -78,6 +88,7 @@ export default function EditQuestionModal(props) {
                             data-dismiss='modal'
                             aria-label='Close'
                             style={{color:"#fff"}}
+                            onClick={reload}
                         >
                             Cancel
                         </button>

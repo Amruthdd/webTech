@@ -23,7 +23,7 @@ function Dash(props){
             setDetails(response.data.questions);
             setSrc('http://localhost:8001/'+ response.data.image);
             // console.log(details);
-            // console.log(response.data);
+            console.log(response.data);
         });
     }, []);
     
