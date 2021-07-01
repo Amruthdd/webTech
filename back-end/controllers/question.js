@@ -228,13 +228,10 @@ exports.relatedquestion = (req, res, next) => {
         
     })
         .then((q) => {
-            console.log(q);
+           
         res.json({relatedquestions:q})
     })
         .catch((err) => {
         next(err)
     })
 }
-// Encounter.findAll({ order: Sequelize.literal('rand()'), limit: 5 }).then((encounters) => {
-//         // single random encounter
-//     }); 
