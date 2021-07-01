@@ -11,7 +11,11 @@ exports.answersofq =  (req, res, next) => {
             },
             include: [
                 user
-            ]
+        ],
+         order: [
+                          ['votes', 'DESC'],
+                         
+                        ],
         })
         .then((r) => {
             const result = []

@@ -10,15 +10,16 @@ const promise1 = (r) => {
             r.map(async (e) => {
                 return answertable
                     .findAll({
-                        attributes: [
-                            [sequelize.fn('MAX', sequelize.col('votes')), "votes"],
-                            'answerid', 'answer'
-                        ],
+                       
                         where: {
                             questiontableQuestionid: e.dataValues.questionid
                         },
                         include: [
                             user
+                        ],
+                        order: [
+                          ['votes', 'DESC'],
+                         
                         ],
                     })
                     .then((r) => {
@@ -31,7 +32,7 @@ const promise1 = (r) => {
                         qaobject.answer = r[0].dataValues.answer;
                         qaobject.answervotes = r[0].dataValues.votes;
                         qaobject.answereduser = r[0].dataValues.user;
-
+                        
 
                         return qaobject
                     })
@@ -59,6 +60,7 @@ exports.getquestionhome = async (req, res, next) => {
         .then((r) => {
             promise1(r)
                 .then(function (value) {
+                   
                     value.reverse();
                     res.status(200).json({
                         questions: value
