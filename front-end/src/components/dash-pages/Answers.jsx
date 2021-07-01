@@ -48,7 +48,7 @@ export default function Answers(props){
                                 </div>
                                 <div>
                                     <div>{props.name}</div>
-                                    <div style={{fontSize:10,color:"gray"}}>asked in{" "} 
+                                    <div style={{fontSize:10,color:"gray"}}>answered in{" "} 
                                         <span style={{color:"#06F2B0"}}>
                                             {item.category}
                                         </span>

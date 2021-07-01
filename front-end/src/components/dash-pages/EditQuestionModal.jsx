@@ -12,17 +12,13 @@ export default function EditQuestionModal(props) {
     const token = localStorage.getItem("token");
     const email = localStorage.getItem("email");
 
-
     const editQuestion = (e) => {
-        
-       
         const token = localStorage.getItem("token");
-
-        fetch(`http://localhost:8001/question/user`, {
+        fetch('http://localhost:8001/question/user', {
             method: "PUT",
             headers: {
                 'content-type':'application/json',
-                "x-access-token": localStorage.getItem("token"),
+                "x-access-token": localStorage.getItem("token")
             },
             body: JSON.stringify({
                 question:question,

@@ -28,6 +28,7 @@ export default function Questions(props){
                 setDetails(response.data.result);
                 setCount(response.data.result.length);
                 console.log(response);
+                setQstId(response.data.result.questionid);
             }
             
         });
