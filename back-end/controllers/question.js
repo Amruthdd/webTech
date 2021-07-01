@@ -224,17 +224,17 @@ exports.exploreallquestions = (req, res, next) => {
 exports.relatedquestion = (req, res, next) => {
     questiontable.findAll({
         where: { category: req.params.category },
+        include: [
+                user
+            ],
         order: Sequelize.literal('rand()'), limit: 10 
         
     })
         .then((q) => {
-            console.log(q);
+           
         res.json({relatedquestions:q})
     })
         .catch((err) => {
         next(err)
     })
 }
-// Encounter.findAll({ order: Sequelize.literal('rand()'), limit: 5 }).then((encounters) => {
-//         // single random encounter
-//     }); 

@@ -192,9 +192,9 @@ app.post("/login", (req, res) => {
         })
         .catch((err) => console.log(err));
 });
-app.post("/dp/:email",upload.single('data'), verifyJWT, (req, res, next) => {
+app.post("/dp/:email",upload.single('data'), (req, res, next) => {
 
-   console.log("FUCK THIS SHIT I HATE THIS")
+   
     user.findByPk(req.params.email)
         .then((user) => {
             console.log(user);
@@ -227,6 +227,7 @@ app.post("/dp/:email",upload.single('data'), verifyJWT, (req, res, next) => {
         })
 
 })
+
 app.get("/:email/user", verifyJWT, (req, res, next) => {
     console.log(req.params.email);
     user.findByPk(req.params.email)
