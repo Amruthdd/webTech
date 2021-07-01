@@ -20,6 +20,7 @@ function AnswerQst({match},{aboutProps}){
     let location = useLocation();
     const [answerClicked, setAnswerClicked] = useState(false);
     const [relQst, setRelQst] = useState();
+    const [count, setCount] = useState(0);
     
     function handleAnswerClicked(){
         setAnswerClicked(true);
@@ -34,6 +35,7 @@ function AnswerQst({match},{aboutProps}){
         setAnswerClicked(false);
     }
 
+
     useEffect(() => {
         Axios.get(`http://localhost:8001/answer/${match.params.id2}`, {
             headers: {
@@ -46,10 +48,9 @@ function AnswerQst({match},{aboutProps}){
             console.log(location);
             // console.log(response.data);
         });
-    }, []);
+    }, [count]);
 
     useEffect(() => {
-        // setCategory(location.state.category);
             Axios.get(`http://localhost:8001/related/${location.state.category}`, {
                 headers: {
                     "x-access-token": localStorage.getItem("token"),
@@ -267,8 +268,12 @@ function AnswerQst({match},{aboutProps}){
                                             pathname:`/index/Home/${val.questionid}`,
                                             state: {
                                                 question: val.question, 
-                                                user:val.user
+                                                user:val.user.fullname,
+                                                category:val.category
                                               }
+                                        }}
+                                        onClick={()=>{
+                                            setCount(count+1);
                                         }}
                                         
                                     >{val.question}</Link>)
