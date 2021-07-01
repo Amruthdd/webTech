@@ -33,6 +33,8 @@ export default function Questions(props){
         });
     }, []);
 
+    
+
     // function handleClick(e){
     //     setQst(e);
     // }
@@ -54,6 +56,7 @@ export default function Questions(props){
             .then((r) => {
                 if (r.status == 200) {
                     alert("Question deleted successfully");
+                    window.location.reload();
                 } else if (r.status == 422) alert("Invalid File format");
                 else if (r.status == 401) alert("Authentication error");
             })
@@ -129,7 +132,7 @@ export default function Questions(props){
                                 data-toggle='modal'
                                 data-target='#EditQuestionModalCenter'
                                 style={{marginRight:40}}
-                                onClick={()=>{setQst(item.question);  setCategory(item.category)}}>
+                                onClick={()=>{setQst(item.question); setQstId(item.questionid);  setCategory(item.category); console.log(qst);}}>
                                     Edit
                                 </button>
                                 
