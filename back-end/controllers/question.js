@@ -157,7 +157,7 @@ exports.getquestionuser = (req, res, next) => {
 
                 result.push(ansobject);
             })
-            console.log(result);
+            
             res.status(200).json({
                 result: result
             });

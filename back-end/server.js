@@ -220,7 +220,7 @@ app.get("/:email/user", verifyJWT, (req, res, next) => {
 
 app.post("/dp/:email", verifyJWT, (req, res, next) => {
 
-
+    console.log("hi");
     user.findByPk(req.params.email)
         .then((user) => {
             console.log(user);
