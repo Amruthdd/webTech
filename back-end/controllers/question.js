@@ -224,6 +224,9 @@ exports.exploreallquestions = (req, res, next) => {
 exports.relatedquestion = (req, res, next) => {
     questiontable.findAll({
         where: { category: req.params.category },
+        include: [
+                user
+            ],
         order: Sequelize.literal('rand()'), limit: 10 
         
     })
