@@ -9,6 +9,8 @@ import EditAnswerModal from "./EditAnswerModal";
 
 export default function Answers(props){
     const [details, setDetails] = useState();
+    const [id, setId] = useState();
+    const [ans, setAns] = useState();
     const email = localStorage.getItem("email");
     useEffect(() => {
         Axios.get(`http://localhost:8001/activityanswer/${email}`, {
@@ -17,7 +19,7 @@ export default function Answers(props){
             },
         }).then((response) => {
             setDetails(response.data.result);
-            console.log(response);
+            // console.log(response);
         });
     }, []);
 
@@ -38,7 +40,7 @@ export default function Answers(props){
                         role='document'
                     >
                         <div className='modal-content modal-main'>
-                            {/* {qst===undefined?"":<EditAnswerModal question={qst} id={qstId} category={category}/>} */}
+                            <EditAnswerModal answer={ans} id={id}/>
                         </div>
                     </div>
                 </div>
@@ -64,7 +66,7 @@ export default function Answers(props){
                                 data-toggle='modal'
                                 data-target='#EditAnswerModalCenter'
                                 style={{marginRight:40}}
-                                // onClick={()=>{setQst(item.question); setQstId(item.questionid);  setCategory(item.category); console.log(qst);}}
+                                onClick={()=>{setAns(item.answer); setId(item.id);  }}
                                 >
                                     Edit
                                 </button>

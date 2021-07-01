@@ -7,27 +7,24 @@ import { Link, Redirect } from "react-router-dom";
 
 export default function EditQuestionModal(props) {
     
-    const [question, setQuestion] = useState(props.question);
+    const [answer, setAnswer] = useState(props.answer);
     // const [tempQuestion, setTempQuestion] = useState(props.question);
-    const [category, setCategory] = useState(props.category);
-    const token = localStorage.getItem("token");
+    // const [category, setCategory] = useState(props.category);
     const email = localStorage.getItem("email");
 
-    const editQuestion = (e) => {
+    const editAnswer = (e) => {
 
-        const token = localStorage.getItem("token");
         
         
-        fetch('http://localhost:8001/question/user', {
+        fetch('http://localhost:8001/answer/user', {
             method: "PUT",
             headers: {
                 'content-type':'application/json',
                 "x-access-token": localStorage.getItem("token")
             },
             body: JSON.stringify({
-                question:question,
-                questionid:props.id,
-                category:category
+                answer:answer,
+                answeridid:props.id,
             }),
         })
             .then((r) => {
@@ -39,7 +36,7 @@ export default function EditQuestionModal(props) {
             .catch((err) => console.log(err));
 
     };
-    if (!token) {
+    if (!localStorage.getItem("token")) {
         return <Redirect to='/login' />;
     }
 
@@ -53,28 +50,16 @@ export default function EditQuestionModal(props) {
             <h5 className=' my-3'>Edit Your Question </h5>
             <form className='form-group'>
                 <div class='form-group'>
-                    <div className="dropdown">
-                        <button className="drop-btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {category}
-                        </button>
-                        <div class="dropdown-menu drop-it " aria-labelledby="dropdownMenu2">
-                            <button className="dropdown-item drop-each" type="button" onClick={()=>{setCategory("Entertainment")}}>Entertainment</button>
-                            <button className="dropdown-item drop-each" type="button" onClick={()=>{setCategory("News & Events")}}>News and Events</button>
-                            <button className="dropdown-item drop-each" type="button" onClick={()=>{setCategory("Arts & Sports")}}>Arts and Sports</button>
-                            <button className="dropdown-item drop-each" type="button" onClick={()=>{setCategory("Education & Reference")}}>Education and Reference</button>
-                            <button className="dropdown-item drop-each" type="button" onClick={()=>{setCategory("Society & Lifestyle")}}>Society and Lifestyle</button>
-                        </div>
-                    </div>
+                    
                     <textarea
                         className='form-control my-3'
                         type='text'
-                        placeholder="Ask a question"
+                        placeholder="Answer the question"
                         name='question'
                         id="qst-edit"
-                        defaultValue={props.question}
+                        defaultValue={props.answer}
                         onChange={(e) => {
-                            setQuestion(e.target.value);
-                            console.log(props.question);
+                            setAnswer(e.target.value);
                         }}
                         required
                     ></textarea>
@@ -96,10 +81,10 @@ export default function EditQuestionModal(props) {
                     <div>
                         <button
                             className='btn start-btn col-6'
-                            onClick={editQuestion}
+                            onClick={editAnswer}
                             type="submit"
                         >
-                            Edit Question
+                            Edit 
                         </button>
                 
                     </div>
