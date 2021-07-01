@@ -10,27 +10,34 @@ const promise1 = (r) => {
             r.map(async (e) => {
                 return answertable
                     .findAll({
-                        attributes: [
-                            [sequelize.fn('MAX', sequelize.col('votes')), "votes"],
-                            'answerid', 'answer'
-                        ],
+                       
                         where: {
                             questiontableQuestionid: e.dataValues.questionid
                         },
                         include: [
                             user
                         ],
+                        order: [
+                            ['votes','DESC']
+                        ]
                     })
                     .then((r) => {
-
+                        console.log(r);
                         var qaobject = new Object();
                         qaobject.question = e.dataValues.question;
                         qaobject.questionid = e.dataValues.questionid;
                         qaobject.category = e.dataValues.category;
                         qaobject.user = e.dataValues.user.fullname;
+                        if (r[0]) {
                         qaobject.answer = r[0].dataValues.answer;
                         qaobject.answervotes = r[0].dataValues.votes;
                         qaobject.answereduser = r[0].dataValues.user;
+                        } else {
+                        qaobject.answer = null;
+                        qaobject.answervotes = null;
+                        qaobject.answereduser = null;
+                        }
+                        
 
 
                         return qaobject
@@ -75,7 +82,6 @@ exports.getquestionhome = async (req, res, next) => {
 }
 
 
-
 exports.deletequestion = (req, res, next) => {
 
     questiontable.destroy({
@@ -114,7 +120,7 @@ exports.updatequestion = (req, res, next) => {
 
 exports.createquestion = (req, res, next) => {
     // console.log(req.params.email);
-    console.log(req.body.question);
+    // console.log(req.body.question);
     questiontable.create({
             question: req.body.question,
             category: req.body.category,
