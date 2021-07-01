@@ -102,14 +102,14 @@ exports.answeractivity =  (req, res, next) => {
                 ansobject.question = e.dataValues.questiontable.question;
 
                 ansobject.category = e.dataValues.questiontable.category;
-
+                ansobject.id = e.dataValues.answerid
                 ansobject.answer = e.dataValues.answer;
                 ansobject.votes = e.dataValues.votes;
 
 
                 result.push(ansobject);
             })
-            console.log(result);
+           
             res.status(200).json({
                 result: result
             });
