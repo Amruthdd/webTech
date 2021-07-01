@@ -28,15 +28,18 @@ user.hasMany(answertable);
 answertable.belongsTo(user, {
     constraints: true
 });
-questiontable.hasMany(answertable);
+questiontable.hasMany(answertable,
+    { onDelete: 'cascade' });
 answertable.belongsTo(questiontable, {
-    constraints: true,
-    onDelete: 'CASCADE'
+    foreignKeyConstraint:true,
+   
+    
 });
-answertable.hasMany(votestoretable);
+answertable.hasMany(votestoretable,
+    { onDelete: 'cascade' });
 votestoretable.belongsTo(answertable, {
     constraints: true,
-    onDelete: 'CASCADE'
+   
 })
 
 // app.use(bodyParser.json());
@@ -295,6 +298,9 @@ app.get("/question/:email", verifyJWT, questioncontroller.getquestionuser);
 
 app.get("/activityanswer/:email", verifyJWT,answercontroller.answeractivity);
 app.get("/category/:c", verifyJWT, questioncontroller.getquestionbycategory)
+app.put("/answer/user", verifyJWT, answercontroller.updateanswer)
+
+app.delete("/answer/user", verifyJWT, answercontroller.deleteanswer)
 
 
 
@@ -310,7 +316,7 @@ app.use((error, req, res, next) => {
 
 
 sequelize
-    .sync({force: true})
+    .sync()
     .then((r) => {
         // console.log(r);
         app.listen(process.env.PORT || 8001);
