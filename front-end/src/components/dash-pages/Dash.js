@@ -25,7 +25,7 @@ function Dash(props){
             
             setSrc(response.data.image);
             // console.log(details);
-            console.log(response.data);
+            // console.log(response.data);
         });
     }, []);
     
@@ -55,7 +55,8 @@ function Dash(props){
                                     state: {
                                         question: item.question, 
                                         user:item.user,
-                                        category:item.category
+                                        category:item.category,
+                                        id: item.questionid,
                                       }
                                 }}
                                 

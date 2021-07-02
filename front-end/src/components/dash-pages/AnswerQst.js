@@ -51,14 +51,14 @@ function AnswerQst({match},{aboutProps}){
     }, [count]);
 
     useEffect(() => {
-            Axios.get(`http://localhost:8001/related/${location.state.category}`, {
+            Axios.get(`http://localhost:8001/related/${location.state.category}/${location.state.id}`, {
                 headers: {
                     "x-access-token": localStorage.getItem("token"),
                 },
             }).then((response) => {
                 setRelQst(response.data.relatedquestions);
                 // setSrc('http://localhost:8001/'+ response.data.image);
-                console.log(response);
+                // console.log(response);
                 // console.log(location);
                 // console.log(response.data);
             });
@@ -269,7 +269,8 @@ function AnswerQst({match},{aboutProps}){
                                             state: {
                                                 question: val.question, 
                                                 user:val.user.fullname,
-                                                category:val.category
+                                                category:val.category,
+                                                id:val.questionid
                                               }
                                         }}
                                         onClick={()=>{

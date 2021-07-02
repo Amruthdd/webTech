@@ -50,7 +50,8 @@ function Explore(props){
                                     state: {
                                         question: item.question, 
                                         user:item.user,
-                                        category:item.category
+                                        category:item.category,
+                                        id: item.questionid,
                                       }
                                 }}
                                 
