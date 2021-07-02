@@ -298,7 +298,7 @@ app.get("/category/:c", verifyJWT, questioncontroller.getquestionbycategory)
 app.put("/answer/user", verifyJWT, answercontroller.updateanswer)
 
 app.delete("/answer/user", verifyJWT, answercontroller.deleteanswer)
-app.get("/related/:category", verifyJWT, questioncontroller.relatedquestion)
+app.get("/related/:category/:id", verifyJWT, questioncontroller.relatedquestion)
 
 
 
