@@ -64,13 +64,13 @@ function Profile(props) {
     
     return (
         
-        <div className='my-5 container user-select-none overflow-hidden profile-main prof-sub-main'>
+        <div className='container user-select-none overflow-hidden profile-main prof-sub-main'>
            
-
-            <div className='my-5 ' >
+            <div className="row" style={{width:"100vw"}}>
+            <div className='my-5 col-xl-7' >
                 <div className=' h5'>Profile</div>
-                <div className='card-bg py-3 px-5 profile-size' >
-                    <div></div>
+                <div className='card-bg  profile-size card-pad' >
+                    
                     <div className='d-flex align-items-center my-3 mr-3'>
                         
                             
@@ -123,7 +123,7 @@ function Profile(props) {
                         <div className='h4' style={{marginTop:-15}}>{details.fullname}</div>
                         <div className='h6' style={{color:"#ffffff8e",marginTop:-10}}>{details.department}</div>
                         <button 
-                            className="edit-prof "
+                            className="edit-prof edit-marg"
                             type='button'
                             data-toggle='modal'
                             data-target='#ProfEditModal'
@@ -150,7 +150,7 @@ function Profile(props) {
                         </div>
                     </div>
                     </div>
-                    <div>About Me</div>
+                    <div className="abt-margin">About Me</div>
                      <div className='profile-center bio'>
                         <div>{details.bio?details.bio:"You haven’t added a description about yourself"}</div>
                         
@@ -168,9 +168,12 @@ function Profile(props) {
                     </div>
                 </div>
             </div>
-            <div className="prof-loc">
-                <div className="d-flex my-2">
-                    <FaGraduationCap size={20}/>
+            <div className="prof-loc col-xl-4">
+                <div className="d-flex my-2" style={{height:"20px"}}>
+                    <div className="loc-icon">
+                        <FaGraduationCap size={20}/>
+                    </div>
+                    
                     <button 
                         className="loc-text mx-2"
                         type='button'
@@ -179,7 +182,10 @@ function Profile(props) {
                     >{details.gradYear?details.gradYear:"Add your graduation year"}</button>
                 </div>
                 <div className="d-flex my-2">
-                    <IoLocationOutline size={20}/>
+                    <div className="loc-icon">
+                        <IoLocationOutline size={20}/>
+                    </div>
+                    
                     <button 
                         className="loc-text mx-2"
                         type='button'
@@ -192,7 +198,7 @@ function Profile(props) {
                     <div className="mx-3">joined on {joined[0]} </div>
                 </div> */}
             </div>
-            
+            </div>
         </div>
             
         

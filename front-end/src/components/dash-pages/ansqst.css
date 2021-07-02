@@ -3,8 +3,11 @@
     color: #000;
     background-color: #1E1D2B;
     color: #fff;
-    padding: 5rem;
+    padding-left: 60px;
+    padding-right: 60px;
     width: 100vw;
+    padding-bottom: 60px;
+    min-height: 84vh;
 }
 
 .ansqst-qst{
@@ -82,4 +85,18 @@
 .relatedqst-link:hover{
     color: #2d997a;
     text-decoration: none;
+}
+
+
+@media (max-width: 576px) {
+    .ansqst-qst-card{
+        padding: 15px 0px;
+        width: 100%;
+    }
+    .relatedqst-card{
+        width: 100%;
+    }
+    .vot-icon-marg{
+        margin-top: -38px;
+    }
 }

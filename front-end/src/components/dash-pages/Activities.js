@@ -69,7 +69,7 @@ function Activities(props){
     }
     return (
 
-        <div className="dash-main">
+        <div className="dash-main user-select-none">
             <Link className="activities-link" onClick={handleQuestionClick} style={{backgroundColor:colorQ}}>My Questions ({countQ})</Link>
             <Link className="activities-link" onClick={handleAnswerClick} style={{backgroundColor:colorA}}>My Answers ({countA})</Link>
             <div className="activities-main">

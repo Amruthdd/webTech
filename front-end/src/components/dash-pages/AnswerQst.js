@@ -78,8 +78,8 @@ function AnswerQst({match},{aboutProps}){
        
         const u = localStorage.getItem("email");
         
-
-        fetch(`http://localhost:8001/answer/user`, {
+        if(answer){
+            fetch(`http://localhost:8001/answer/user`, {
             method: "POST",
             headers: {
                 'content-type':'application/json',
@@ -98,7 +98,11 @@ function AnswerQst({match},{aboutProps}){
                 else if (r.status == 401) alert("Authentication error");
             })
             .catch((err) => console.log(err));
-        window.location.reload(false);
+            window.location.reload(false);
+        }
+        else
+            alert("Empty answer is not accepted!");
+        
 
     };
 
@@ -136,14 +140,14 @@ function AnswerQst({match},{aboutProps}){
     return (
         <div className="ansqst-main">
         <div className="row">
-            <div className="col-xl-5">
+            <div className="col-xl-5 col-sm-12">
             {/* <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
             >
                 <Masonry> */}
                 
 
-                    <div className="ansqst-qst-card" style={{width:"90%"}}>
+                    <div className="ansqst-qst-card" >
                         <div className="ansqst-qst-card-in">
                            
                             <div className="ansqst-qst-name">
@@ -171,7 +175,7 @@ function AnswerQst({match},{aboutProps}){
                         >
                             Answer
                     </button></div> :<div><textarea
-                            className='form-control ansqst-iin my-4'
+                            className='form-control ansqst-iin my-2'
                             type='text'
                             placeholder='Your answer'
                             name='answer'
@@ -226,7 +230,7 @@ function AnswerQst({match},{aboutProps}){
                                 </div>
 
                                 <div className="vote-bar">
-                                    <div>
+                                    <div className="vot-icon-marg">
                                         <button
                                             className="vote-btn"
                                             onClick={()=>{
@@ -256,7 +260,7 @@ function AnswerQst({match},{aboutProps}){
             }):""}
         </div>
         
-        <div className="col-xl-7">
+        <div className="col-xl-7 col-sm-12">
         <div >
             
             

@@ -73,7 +73,7 @@ function Explore(props){
 
                             <div className="qst-card" key={item.questionid}>
                                 <div className="qst-card-in-exp">
-                                    <div className="qst">{item.question}</div>
+                                    
                                     <div className="qst-name">
                                         <div>
                                             {src?
@@ -91,6 +91,7 @@ function Explore(props){
                                             </div>
                                         </div>
                                     </div>
+                                    <div className="qst">{item.question}</div>
                                     <div className="view-ans">
                                         view answers   
                                     </div>
