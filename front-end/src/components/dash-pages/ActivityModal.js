@@ -92,6 +92,9 @@ function Activity(props) {
                             data-dismiss='modal'
                             aria-label='Close'
                             style={{color:"#fff"}}
+                            onClick={()=>{
+                                window.location.reload();
+                            }}
                         >
                             Cancel
                         </button>
