@@ -17,6 +17,19 @@
     /* padding-top: 10px; */
 }
 
+.activities-qst-link{
+    font-size:12px;
+     display:inline-block;
+     margin-right:150px;
+     margin-top:10px;
+    color:#ffffff82;
+}
+
+.activities-qst-link:hover{
+    text-decoration: none;
+    color:#cccccc82;
+}
+
 .activities-link:hover{
     background-color: #404251;
     border-radius: 10px;
