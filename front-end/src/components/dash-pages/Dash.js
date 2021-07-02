@@ -23,7 +23,7 @@ function Dash(props){
         }).then((response) => {
             setDetails(response.data.questions);
             
-            setSrc('http://localhost:8001/'+ response.data.image);
+            setSrc(response.data.image);
             // console.log(details);
             console.log(response.data);
         });
@@ -54,7 +54,8 @@ function Dash(props){
                                     pathname:`/index/Home/${item.questionid}`,
                                     state: {
                                         question: item.question, 
-                                        user:item.user
+                                        user:item.user,
+                                        category:item.category
                                       }
                                 }}
                                 

@@ -10,6 +10,7 @@ function Explore(props){
 
     const [details, setDetails] = useState([]);
     const [count,setCount] = useState(0);
+    const [src,setSrc] = useState(null);
 
     useEffect(() => {
         Axios.get(`http://localhost:8001/question`, {
@@ -18,6 +19,8 @@ function Explore(props){
             },
         }).then((response) => {
             setDetails(response.data.questions);
+            setSrc(response.data.image);
+            console.log(response);
             // setCount(response.data.questions.length);
             // console.log(details);
             // console.log(response.data.questions.length);
@@ -58,7 +61,11 @@ function Explore(props){
                                     <div className="qst">{item.question}</div>
                                     <div className="qst-name">
                                         <div>
-                                            <figure className='person-icon'></figure>
+                                            {src?
+                                                    <img 
+                                                        className="person-img" 
+                                                        src={`http://localhost:8001/${item.user.image}`}
+                                                    />:<figure className='person-icon'></figure>}
                                         </div>
                                         <div>
                                             <div>{item.user}</div>

@@ -185,7 +185,7 @@ export default function Questions(props){
                                         category:item.category
                                       }
                                 }}
-                                style={{fontSize:"smaller", display:"inline-block", marginRight:"150px",marginTop:"20px", color:"#06F2B0"}}
+                                style={{fontSize:"12px", display:"inline-block", marginRight:"150px",marginTop:"10px", color:"#ffffff82"}}
                             >
                                 View Answers
                         </Link>

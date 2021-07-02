@@ -128,8 +128,8 @@ function AnswerQst({match},{aboutProps}){
 
     return (
         <div className="ansqst-main">
-        <Row><Col className="col-lg-5">
-        <div>
+        <div className="row">
+            <div className="col-xl-5">
             {/* <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
             >
@@ -249,8 +249,8 @@ function AnswerQst({match},{aboutProps}){
                 )
             }):""}
         </div>
-        </Col>
-        <Col className="col-lg-7">
+        
+        <div className="col-xl-7">
         <div >
             
             
@@ -290,8 +290,8 @@ function AnswerQst({match},{aboutProps}){
                 
             
         </div>
-        </Col>
-        </Row>    
+        </div>
+        </div>
                 
             
             

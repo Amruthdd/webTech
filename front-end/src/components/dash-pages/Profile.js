@@ -4,6 +4,7 @@ import EditModal from "./EditModal";
 import EditProfModal from "./EditProfModal";
 import { Link } from "react-router-dom";
 import "./profile.css";
+import './activities.css';
 import "./index.css";
 import { MdPerson,MdEdit } from "react-icons/md";
 import { FaGraduationCap,FaRegCalendar } from "react-icons/fa";
@@ -31,9 +32,7 @@ function Profile(props) {
             },
         }).then((response) => {
             setDetails(response.data);
-            setSrc('http://localhost:8001/'+ response.data.image);
-            console.log(response.data);
-            console.log(src);
+            setSrc(response.data.image);
             // setJoined(details.joined.split("T"))
             
             
@@ -80,7 +79,8 @@ function Profile(props) {
                            
                                 
                                 <div className="d-flex justify-content-center align-items-center" >
-                                    {!src?<img className="profile-img" src={src}/>:<figure className='profile-page-icon'></figure>}
+                                    {!src?<figure className='profile-page-icon'></figure>:
+                                        <img className="profile-img" src={`http://localhost:8001/${src}`}/>}
                                     
                                     
                                 </div>

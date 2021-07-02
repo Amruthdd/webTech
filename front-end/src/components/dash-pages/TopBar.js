@@ -23,7 +23,7 @@ function TopBar(props){
         }).then((response) => {
             console.log(response);
             
-            setSrc('http://localhost:8001/'+ response.data.image);
+            setSrc(response.data.image);
         });
     }, []);
     
@@ -73,7 +73,7 @@ function TopBar(props){
                 <div className="dropdown">
                     <a class="prof-a dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         
-                    {!src?<figure className='top-profile'></figure>:<img className="top-profile" src={src}/>}
+                    {src?<img className="top-profile" src={`http://localhost:8001/${src}`}/>:<figure className='top-profile'></figure>}
                     </a>
                     <div class="drop dropdown-menu" aria-labelledby="dropdownMenuLink">
                         
