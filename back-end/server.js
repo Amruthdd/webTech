@@ -42,8 +42,24 @@ votestoretable.belongsTo(answertable, {
    
 })
 
-// app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
+
+app.use(express.json());
+
+app.use(
+    Cors({
+        origin: ["http://localhost:3000"],
+
+        methods: ["GET", "POST", "PUT", "DELETE"],
+
+        credentials: true,
+    })
+);
+
+
+
+
+
 const filestorage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'images');
@@ -61,36 +77,16 @@ const fileFilter = (req, file, cb) => {
     }
 
 }
+
 app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use('/dp', multer({
+var upload = multer({
     storage: filestorage,
     fileFilter: fileFilter
-}).single('data'));
-
-app.use(
-    Cors({
-        origin: ["http://localhost:3000"],
-
-        methods: ["GET", "POST", "PUT", "DELETE"],
-
-        credentials: true,
-    })
-);
-
-app.use(cookieParser());
-app.use(
-    session({
-        key: "username",
-        secret: "appu703453",
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-            expires: 60 * 60 * 24,
-        },
-    })
-);
-
-app.use(express.json());
+})
+// app.use('/dp', multer({
+//     storage: filestorage,
+//     fileFilter: fileFilter
+// }).single('data'));
 
 const verifyJWT = (req, res, next) => {
     // const token = req.headers["x-access-token"];
@@ -163,7 +159,7 @@ app.post("/login", (req, res) => {
                     user.password,
                     (err, response) => {
                         if (response) {
-                            req.session.user = user;
+                           
 
                             const username = user.fullname;
                             const token = jwt.sign({
@@ -196,31 +192,9 @@ app.post("/login", (req, res) => {
         })
         .catch((err) => console.log(err));
 });
+app.post("/dp/:email",upload.single('data'), (req, res, next) => {
 
-app.get("/:email/user", verifyJWT, (req, res, next) => {
-    console.log(req.params.email);
-    user.findByPk(req.params.email)
-        .then((user) => {
-            res.status(200).json({
-
-                email: user.email,
-                department: user.department,
-                fullname: user.fullname,
-                image: user.image,
-                bio: user.bio,
-                location:user.location,
-                gradYear:user.gradYear
-            });
-        })
-        .catch((err) => {
-
-            console.log(err);
-        });
-});
-
-app.post("/dp/:email", verifyJWT, (req, res, next) => {
-
-
+   
     user.findByPk(req.params.email)
         .then((user) => {
             console.log(user);
@@ -253,6 +227,29 @@ app.post("/dp/:email", verifyJWT, (req, res, next) => {
         })
 
 })
+
+app.get("/:email/user", verifyJWT, (req, res, next) => {
+    console.log(req.params.email);
+    user.findByPk(req.params.email)
+        .then((user) => {
+            res.status(200).json({
+
+                email: user.email,
+                department: user.department,
+                fullname: user.fullname,
+                image: user.image,
+                bio: user.bio,
+                location:user.location,
+                gradYear:user.gradYear
+            });
+        })
+        .catch((err) => {
+
+            console.log(err);
+        });
+});
+
+
 
 app.post('/user/update', verifyJWT, (req, res, next) => {
     user.findByPk(req.body.email)
@@ -301,7 +298,7 @@ app.get("/category/:c", verifyJWT, questioncontroller.getquestionbycategory)
 app.put("/answer/user", verifyJWT, answercontroller.updateanswer)
 
 app.delete("/answer/user", verifyJWT, answercontroller.deleteanswer)
-
+app.get("/related/:category", verifyJWT, questioncontroller.relatedquestion)
 
 
 

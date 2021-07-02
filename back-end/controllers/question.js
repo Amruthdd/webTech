@@ -2,7 +2,7 @@ const sequelize = require("../util/database");
 const questiontable = require("../models/questiontable");
 const user = require("../models/user")
 const answertable = require("../models/answertable")
-
+const Sequelize = require('sequelize');
 const promise1 = (r) => {
     return new Promise(async (resolve, reject) => {
 
@@ -157,7 +157,7 @@ exports.getquestionuser = (req, res, next) => {
 
                 result.push(ansobject);
             })
-            console.log(result);
+            
             res.status(200).json({
                 result: result
             });
@@ -221,6 +221,20 @@ exports.exploreallquestions = (req, res, next) => {
 
 }
 
-// Encounter.findAll({ order: Sequelize.literal('rand()'), limit: 5 }).then((encounters) => {
-//         // single random encounter
-//     }); 
+exports.relatedquestion = (req, res, next) => {
+    questiontable.findAll({
+        where: { category: req.params.category },
+        include: [
+                user
+            ],
+        order: Sequelize.literal('rand()'), limit: 10 
+        
+    })
+        .then((q) => {
+           
+        res.json({relatedquestions:q})
+    })
+        .catch((err) => {
+        next(err)
+    })
+}

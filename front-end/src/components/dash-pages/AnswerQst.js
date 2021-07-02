@@ -6,21 +6,35 @@ import "./ansqst.css"
 import { Icon, InlineIcon } from '@iconify/react';
 import arrowUp24Filled from '@iconify/icons-fluent/arrow-up-24-filled';
 import arrowDown24Filled from '@iconify/icons-fluent/arrow-down-24-filled';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
+
 function AnswerQst({match},{aboutProps}){
 
     const [details, setDetails] = useState([]);
     const [src,setSrc] = useState(null);
     const [answer,setAnswer] = useState("");
     const [answerid,setAnswerid] = useState();
+    const [category, setCategory] = useState();
     let location = useLocation();
     const [answerClicked, setAnswerClicked] = useState(false);
+    const [relQst, setRelQst] = useState();
+    const [count, setCount] = useState(0);
+    
     function handleAnswerClicked(){
         setAnswerClicked(true);
     }
 
+    // if(location.state!==undefined){
+    //     setCategory(location.state.category);
+    // }
+    
+
     function handleCancelClicked(){
         setAnswerClicked(false);
     }
+
 
     useEffect(() => {
         Axios.get(`http://localhost:8001/answer/${match.params.id2}`, {
@@ -34,7 +48,23 @@ function AnswerQst({match},{aboutProps}){
             console.log(location);
             // console.log(response.data);
         });
-    }, []);
+    }, [count]);
+
+    useEffect(() => {
+            Axios.get(`http://localhost:8001/related/${location.state.category}`, {
+                headers: {
+                    "x-access-token": localStorage.getItem("token"),
+                },
+            }).then((response) => {
+                setRelQst(response.data.relatedquestions);
+                // setSrc('http://localhost:8001/'+ response.data.image);
+                console.log(response);
+                // console.log(location);
+                // console.log(response.data);
+            });
+        }, []);
+    
+    
 
     const uploadAnswer = (e) => {
         
@@ -98,15 +128,15 @@ function AnswerQst({match},{aboutProps}){
 
     return (
         <div className="ansqst-main">
-            
-                <div>
-            <ResponsiveMasonry
+        <Row><Col className="col-lg-5">
+        <div>
+            {/* <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
             >
-                <Masonry>
+                <Masonry> */}
                 
 
-                    <div className="ansqst-qst-card">
+                    <div className="ansqst-qst-card" style={{width:"90%"}}>
                         <div className="ansqst-qst-card-in">
                            
                             <div className="ansqst-qst-name">
@@ -164,30 +194,8 @@ function AnswerQst({match},{aboutProps}){
                             
                         </div>
 
-                        
-                        {/* <div className="vote-bar">
-
-                    
-                    
-
-                        <button
-                            type='button'> </button>
-                            <div>
-                            <Icon icon={arrowUp24Filled} />
-
-                            <span className="vote-count">10</span>
-                            
-                            
-                            <Icon icon={arrowDown24Filled} />
-                            </div>
-                            
-                            
-                        </div> */}
                     </div>
                     
-                
-                </Masonry>
-            </ResponsiveMasonry>
             <h6>Previous answers({details!==undefined?details.length:""})</h6>
             {details!==undefined?details.map((item) =>{
                 return(
@@ -202,11 +210,7 @@ function AnswerQst({match},{aboutProps}){
                                         </div>
                                         <div>
                                             <div>{item.answereduser}</div>
-                                            {/* <div style={{fontSize:10,color:"gray"}}>from{" "} 
-                                                <span style={{color:"#06F2B0"}}>
-                                                    {item.category}
-                                                </span>
-                                            </div> */}
+                                           
                                         </div>
                                     </div>
                                     <div className="qst-ans">
@@ -245,6 +249,50 @@ function AnswerQst({match},{aboutProps}){
                 )
             }):""}
         </div>
+        </Col>
+        <Col className="col-lg-7">
+        <div >
+            
+            
+                    <div>
+                        <div className="relatedqst-card">
+                                <div className="relatedqst-card-in">
+
+                                    <h6 style={{marginBottom:"15px"}}>Related Questions</h6>
+
+                                {relQst===undefined?"":
+                                relQst.map((val)=>{
+                                    return (<Link 
+                                        className="relatedqst-link" 
+                                        to={{
+                                            pathname:`/index/Home/${val.questionid}`,
+                                            state: {
+                                                question: val.question, 
+                                                user:val.user.fullname,
+                                                category:val.category
+                                              }
+                                        }}
+                                        onClick={()=>{
+                                            setCount(count+1);
+                                        }}
+                                        
+                                    >{val.question}</Link>)
+                                })
+                                }
+                                    
+                                </div>
+
+                                
+                            </div>
+                     
+                    
+                    </div>
+                
+            
+        </div>
+        </Col>
+        </Row>    
+                
             
             
             
