@@ -182,7 +182,8 @@ export default function Questions(props){
                                     state: {
                                         question: item.question, 
                                         user:item.user,
-                                        category:item.category
+                                        category:item.category,
+                                        id:item.questionid
                                       }
                                 }}
                                 style={{fontSize:"12px", display:"inline-block", marginRight:"150px",marginTop:"10px", color:"#ffffff82"}}

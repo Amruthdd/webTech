@@ -60,7 +60,7 @@ function AnswerQst({match},{aboutProps}){
                 // console.log(location);
                 // console.log(response.data);
             });
-        }, []);
+        }, [count]);
     
     
 
