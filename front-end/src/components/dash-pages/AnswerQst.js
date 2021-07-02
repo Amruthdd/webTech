@@ -26,9 +26,7 @@ function AnswerQst({match},{aboutProps}){
         setAnswerClicked(true);
     }
 
-    // if(location.state!==undefined){
-    //     setCategory(location.state.category);
-    // }
+   
     
 
     function handleCancelClicked(){
@@ -62,7 +60,7 @@ function AnswerQst({match},{aboutProps}){
                 // console.log(location);
                 // console.log(response.data);
             });
-        }, []);
+        }, [count]);
     
     
 

@@ -176,16 +176,16 @@ export default function Questions(props){
                                 </div>
                             </div>
                             <Link 
-                                className="qst-link-card" 
+                                className="activities-qst-link" 
                                 to={{
                                     pathname:`/index/Explore/${item.questionid}`,
                                     state: {
                                         question: item.question, 
                                         user:item.user,
-                                        category:item.category
+                                        category:item.category,
+                                        id:item.questionid
                                       }
                                 }}
-                                style={{fontSize:"12px", display:"inline-block", marginRight:"150px",marginTop:"10px", color:"#ffffff82"}}
                             >
                                 View Answers
                         </Link>
