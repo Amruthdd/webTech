@@ -15,13 +15,22 @@ function AnswerQst({match},{aboutProps}){
     const [details, setDetails] = useState([]);
     const [src,setSrc] = useState(null);
     const [answer,setAnswer] = useState("");
-    const [answerid,setAnswerid] = useState();
-    const [category, setCategory] = useState();
     let location = useLocation();
     const [answerClicked, setAnswerClicked] = useState(false);
     const [relQst, setRelQst] = useState();
     const [count, setCount] = useState(0);
     
+    if(location.state!==undefined){
+    localStorage.setItem("category", location.state.category);
+    localStorage.setItem("questionid", location.state.id);
+    localStorage.setItem("askeduser", location.state.user);
+    localStorage.setItem("question", location.state.question);
+}
+
+    const category = localStorage.getItem("category");
+    const questionid = localStorage.getItem("questionid");
+    const askeduser = localStorage.getItem("askeduser");
+    const question = localStorage.getItem("question");
     function handleAnswerClicked(){
         setAnswerClicked(true);
     }
@@ -49,7 +58,7 @@ function AnswerQst({match},{aboutProps}){
     }, [count]);
 
     useEffect(() => {
-            Axios.get(`http://localhost:8001/related/${location.state.category}/${location.state.id}`, {
+            Axios.get(`http://localhost:8001/related/${category}/${questionid}`, {
                 headers: {
                     "x-access-token": localStorage.getItem("token"),
                 },
@@ -142,20 +151,19 @@ function AnswerQst({match},{aboutProps}){
                                 <figure className='person-icon'></figure>
 
                                 </div>
-                                {location.state===undefined?"":
                                 <div>
-                                    <div>{location.state.user}</div>
+                                    <div>{askeduser}</div>
                                     <div style={{fontSize:10,color:"gray"}}>asked in{" "} 
                                         <span style={{color:"#06F2B0"}}>
-                                        {location.state.category}
+                                        {category}
                                         </span>
                                     </div>
                                     
-                                </div>}
+                                </div>
 
                             </div>
                             
-                            <div className="ansqst-qst">{location.state===undefined?"":location.state.question}</div>
+                            <div className="ansqst-qst">{question}</div>
                             {answerClicked===false?<div><button
                             className='btn start-btn col-2'
                             onClick={handleAnswerClicked}
