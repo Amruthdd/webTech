@@ -11,6 +11,7 @@ import "./index.css";
 function TopBar(props){
 
     const [src,setSrc] = useState("");
+    
     // const [searchTerm, setSearchTerm] = useState("");
     const u = localStorage.getItem("email");
 
@@ -20,12 +21,14 @@ function TopBar(props){
                 "x-access-token": localStorage.getItem("token"),
             },
         }).then((response) => {
-
+            console.log(response);
+            
             setSrc('http://localhost:8001/'+ response.data.image);
         });
     }, []);
     
     return (
+        
         <div className="top-bar-main">
             <div className="search-main ">
                 <input className='search-input form-control px-3 mb-4'
@@ -81,6 +84,8 @@ function TopBar(props){
                 </div>
                
             </div>
+            
+           
             
             
             {/* <Link to='/logout' className='btn start-btn px-3'>

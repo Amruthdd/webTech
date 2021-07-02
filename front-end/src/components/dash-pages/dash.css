@@ -2,7 +2,7 @@
 
 .dash-main{
     padding-left: 60px;
-    padding-top: 10px;
+    padding-top: 30px;
     /* background-color: #d3d3d3; */
     position: relative;
     width: 78vw;
@@ -31,7 +31,7 @@
     text-decoration: none;
 }
 .qst-card{
-    padding: 20px;
+    padding: 20px 40px 20px 0px;
     transition: transform .3s;
 }
 .qst-card:hover{
@@ -70,6 +70,22 @@
     width: 35px;
     height:35px;
     border-radius: 100%;
+}
+.hello{
+    
+    color:#06E6B1;
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 600;
+    background: #1E1D2B;
+
+}
+.hello div{
+    
+    color: rgba(255, 255, 255, 0.51);
+    font-size: 15px;
+    line-height: 28px;
+    font-weight: normal;
 }
 
 /* Explore */

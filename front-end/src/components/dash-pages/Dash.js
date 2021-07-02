@@ -13,6 +13,7 @@ function Dash(props){
 
     const [details, setDetails] = useState([]);
     const [src,setSrc] = useState(null);
+    
 
     useEffect(() => {
         Axios.get(`http://localhost:8001/question`, {
@@ -21,6 +22,7 @@ function Dash(props){
             },
         }).then((response) => {
             setDetails(response.data.questions);
+            
             setSrc('http://localhost:8001/'+ response.data.image);
             // console.log(details);
             console.log(response.data);
@@ -31,6 +33,10 @@ function Dash(props){
     return (
 
         <div className="dash-main">
+            {/* <div className="hello">Hello{" "}
+                <span>{name}</span>
+                <div>looks like a lot of discussions are going on here</div>
+            </div> */}
             <h5>Discover new topics</h5>
             
             <ResponsiveMasonry
