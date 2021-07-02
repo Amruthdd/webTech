@@ -223,7 +223,12 @@ exports.exploreallquestions = (req, res, next) => {
 
 exports.relatedquestion = (req, res, next) => {
     questiontable.findAll({
-        where: { category: req.params.category },
+        where: {
+            category: req.params.category,
+            questionid: {
+                [Sequelize.Op.not]: req.params.id
+            }
+        },
         include: [
                 user
             ],
@@ -231,7 +236,7 @@ exports.relatedquestion = (req, res, next) => {
         
     })
         .then((q) => {
-           
+            console.log(q);
         res.json({relatedquestions:q})
     })
         .catch((err) => {
