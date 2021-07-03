@@ -13,14 +13,14 @@ function Explore(props){
     const [src,setSrc] = useState(null);
     const [category, setCategory] = useState("All categories");
     useEffect(() => {
-        Axios.get(`http://localhost:8001/question`, {
+        Axios.get(`http://localhost:8001/explore/questions`, {
             headers: {
                 "x-access-token": localStorage.getItem("token"),
             },
         }).then((response) => {
-            setDetails(response.data.questions);
-            setSrc(response.data.image);
-            console.log(response);
+            setDetails(response.data.result);
+            // setSrc(response.data.result.image);
+            // console.log(response);
             // setCount(response.data.questions.length);
             // console.log(details);
             // console.log(response.data.questions.length);
@@ -76,12 +76,13 @@ function Explore(props){
                                     
                                     <div className="qst-name">
                                         <div>
-                                            {src?
+                                            {item.image?
                                                     <img 
                                                         className="person-img" 
-                                                        src={`http://localhost:8001/${item.user.image}`}
+                                                        src={`http://localhost:8001/${item.image}`}
                                                     />:<figure className='person-icon'></figure>}
                                         </div>
+                                        
                                         <div>
                                             <div>{item.user}</div>
                                             <div style={{fontSize:10,color:"gray"}}>asked in{" "} 
