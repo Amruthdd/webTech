@@ -210,6 +210,7 @@ exports.exploreallquestions = (req, res, next) => {
                 qaobject.questionid = e.dataValues.questionid;
                 qaobject.category = e.dataValues.category;
                 qaobject.user = e.dataValues.user.fullname;
+                qaobject.image= e.dataValues.user.image;
                 result.push(qaobject);
             })
             res.status(200).json({

@@ -19,8 +19,8 @@ function Activity(props) {
         
        
         const token = localStorage.getItem("token");
-
-        fetch(`http://localhost:8001/question/user`, {
+        if(category!=="select category" && question){
+            fetch(`http://localhost:8001/question/user`, {
             method: "POST",
             headers: {
                 'content-type':'application/json',
@@ -39,6 +39,17 @@ function Activity(props) {
                 else if (r.status == 401) alert("Authentication error");
             })
             .catch((err) => console.log(err));
+        }
+        else if(category === "select category"){
+            alert("Choose a category");
+            e.preventDefault();
+        }
+        else{
+            alert("Empty question not accepted");
+            e.preventDefault();
+        }
+            
+        
 
     };
     if (!token) {

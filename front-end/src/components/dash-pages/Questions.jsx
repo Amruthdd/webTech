@@ -115,10 +115,11 @@ export default function Questions(props){
                 }).map((item) => {
                     return(
                         
+                        
                     <div className="activities-qst-card">
                         <div className="act-qst-card-in">
                            
-                                <div className="act-qst">{item.question}</div>
+                                
                                 
                                 <div className="dropdown" >
                                 <a class="menu-icon dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                            
@@ -175,6 +176,7 @@ export default function Questions(props){
                                     </div>
                                 </div>
                             </div>
+                            <div className="act-qst my-2">{item.question}</div>
                             <Link 
                                 className="activities-qst-link" 
                                 to={{
@@ -192,6 +194,7 @@ export default function Questions(props){
                         </div>
                         
                     </div>
+                    
                     
                     )   
                 })}

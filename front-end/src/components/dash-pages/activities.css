@@ -13,7 +13,7 @@
 }
 
 .activities-main{
-    padding: 5rem;
+    padding: 10px;
     /* padding-top: 10px; */
 }
 
@@ -97,3 +97,8 @@ img{
     display: inline-flex;
     margin-top: 5px;
 }
+@media (max-width: 576px) {
+    .activities-link{
+        width: max-content;
+    }
+}    

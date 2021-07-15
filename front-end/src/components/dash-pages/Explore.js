@@ -13,14 +13,20 @@ function Explore(props){
     const [src,setSrc] = useState(null);
     const [category, setCategory] = useState("All categories");
     useEffect(() => {
-        Axios.get(`http://localhost:8001/question`, {
+        Axios.get(`http://localhost:8001/explore/questions`, {
             headers: {
                 "x-access-token": localStorage.getItem("token"),
             },
         }).then((response) => {
+<<<<<<< HEAD
             setDetails(response.data.questions);
             setSrc(response.data.questions.image);
             console.log(response);
+=======
+            setDetails(response.data.result);
+            // setSrc(response.data.result.image);
+            // console.log(response);
+>>>>>>> c4376835443f69bfc04b7289bfb207be114373ce
             // setCount(response.data.questions.length);
             // console.log(details);
             // console.log(response.data.questions.length);
@@ -74,9 +80,10 @@ function Explore(props){
 
                             <div className="qst-card" key={item.questionid}>
                                 <div className="qst-card-in-exp">
-                                    <div className="qst">{item.question}</div>
+                                    
                                     <div className="qst-name">
                                         <div>
+<<<<<<< HEAD
                                         {!(item.image)?<figure className='person-icon'></figure>:
                                                 (!src?
                                                     <img 
@@ -85,7 +92,15 @@ function Explore(props){
                                                     />:<figure className='person-icon'></figure>
                                                 )
                                             }
+=======
+                                            {item.image?
+                                                    <img 
+                                                        className="person-img" 
+                                                        src={`http://localhost:8001/${item.image}`}
+                                                    />:<figure className='person-icon'></figure>}
+>>>>>>> c4376835443f69bfc04b7289bfb207be114373ce
                                         </div>
+                                        
                                         <div>
                                             <div>{item.user}</div>
                                             <div style={{fontSize:10,color:"gray"}}>asked in{" "} 
@@ -95,6 +110,7 @@ function Explore(props){
                                             </div>
                                         </div>
                                     </div>
+                                    <div className="qst">{item.question}</div>
                                     <div className="view-ans">
                                         view answers   
                                     </div>

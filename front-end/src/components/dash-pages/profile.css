@@ -53,6 +53,7 @@ img[src=""] {
 }
 .prof-avat-main{
     position: relative;
+    margin-top: -5%;
 }
 .btn-posi{
     position: absolute;
@@ -101,7 +102,9 @@ img[src=""] {
 .profile-main{
    
     padding-left: 60px;
-    height: 110vh;
+    max-height: 100vh;
+    min-height: 84vh;
+    width: 100vw;
     
 }
 .prof-sub-main{
@@ -109,8 +112,8 @@ img[src=""] {
 }
 .prof-loc{
 
-    margin-top: 8%;
-    width: 336px;
+    margin-top: 8.5%;
+    width: 300px;
     height: 162px;
     background-color: #2B2C3E;
     border-radius: 16px;
@@ -172,4 +175,55 @@ img[src=""] {
 .bio{
     color: rgba(255, 255, 255, 0.51);
     font-size: 12px;
+}
+.card-pad{
+    padding: 30px;
+}
+
+
+@media (max-width: 576px) {
+    
+    .profile-main{
+        min-height: 100vh;
+    }
+    .profile-size {
+        width: 400px;
+        
+    }
+    .prof-loc{
+        margin-left: 40px;
+        width:350px;
+        height: 120px;
+        margin-top:-41%;
+        margin-left: 50px;
+    }
+    .prof-avat-main{
+        position: relative;
+        margin-top: -15%;
+    }
+    .btn-posi{
+        position: absolute;
+        top:20%;
+        right: 4px;
+        width: 50px;
+       
+    
+    }
+    .card-pad{
+        padding:30px;
+        width: 420px;
+        height: 200px;
+    }
+    .abt-margin{
+        margin-top: -30px;
+    }
+    .edit-marg{
+        margin-top: 0px;
+    }
+    .count-box{
+        width: 180px;
+    }
+    .loc-icon{
+        margin-top: 14%;
+    }
 }
