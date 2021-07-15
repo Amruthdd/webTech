@@ -18,15 +18,9 @@ function Explore(props){
                 "x-access-token": localStorage.getItem("token"),
             },
         }).then((response) => {
-<<<<<<< HEAD
             setDetails(response.data.questions);
             setSrc(response.data.questions.image);
             console.log(response);
-=======
-            setDetails(response.data.result);
-            // setSrc(response.data.result.image);
-            // console.log(response);
->>>>>>> c4376835443f69bfc04b7289bfb207be114373ce
             // setCount(response.data.questions.length);
             // console.log(details);
             // console.log(response.data.questions.length);
@@ -83,7 +77,6 @@ function Explore(props){
                                     
                                     <div className="qst-name">
                                         <div>
-<<<<<<< HEAD
                                         {!(item.image)?<figure className='person-icon'></figure>:
                                                 (!src?
                                                     <img 
@@ -92,13 +85,6 @@ function Explore(props){
                                                     />:<figure className='person-icon'></figure>
                                                 )
                                             }
-=======
-                                            {item.image?
-                                                    <img 
-                                                        className="person-img" 
-                                                        src={`http://localhost:8001/${item.image}`}
-                                                    />:<figure className='person-icon'></figure>}
->>>>>>> c4376835443f69bfc04b7289bfb207be114373ce
                                         </div>
                                         
                                         <div>
