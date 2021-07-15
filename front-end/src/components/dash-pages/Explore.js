@@ -18,9 +18,9 @@ function Explore(props){
                 "x-access-token": localStorage.getItem("token"),
             },
         }).then((response) => {
-            setDetails(response.data.result);
-            // setSrc(response.data.result.image);
-            // console.log(response);
+            setDetails(response.data.questions);
+            setSrc(response.data.questions.image);
+            console.log(response);
             // setCount(response.data.questions.length);
             // console.log(details);
             // console.log(response.data.questions.length);
@@ -66,6 +66,7 @@ function Explore(props){
                                         user:item.user,
                                         category:item.category,
                                         id: item.questionid,
+                                        image: item.image
                                       }
                                 }}
                                 
@@ -76,11 +77,14 @@ function Explore(props){
                                     
                                     <div className="qst-name">
                                         <div>
-                                            {item.image?
+                                        {!(item.image)?<figure className='person-icon'></figure>:
+                                                (!src?
                                                     <img 
                                                         className="person-img" 
                                                         src={`http://localhost:8001/${item.image}`}
-                                                    />:<figure className='person-icon'></figure>}
+                                                    />:<figure className='person-icon'></figure>
+                                                )
+                                            }
                                         </div>
                                         
                                         <div>

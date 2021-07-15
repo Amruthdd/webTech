@@ -25,6 +25,7 @@ exports.answersofq =  (req, res, next) => {
                 obj.answer = e.dataValues.answer;
                 obj.votes = e.dataValues.votes;
                 obj.answereduser = e.dataValues.user.fullname;
+                obj.image = e.dataValues.user.image;
                 result.push(obj);
             })
             res.status(200).json({

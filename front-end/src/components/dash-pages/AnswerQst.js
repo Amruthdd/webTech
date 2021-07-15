@@ -152,7 +152,14 @@ function AnswerQst({match},{aboutProps}){
                            
                             <div className="ansqst-qst-name">
                                 <div>
-                                <figure className='person-icon'></figure>
+                                {!(location.state.image)?<figure className='person-icon'></figure>:
+                                                (!src?
+                                                    <img 
+                                                        className="person-img" 
+                                                        src={`http://localhost:8001/${location.state.image}`}
+                                                    />:<figure className='person-icon'></figure>
+                                                )
+                                            }
 
                                 </div>
                                 <div>
@@ -215,7 +222,14 @@ function AnswerQst({match},{aboutProps}){
                                     
                                     <div className="qst-name">
                                         <div>
-                                          <figure className='person-icon'></figure>                                            
+                                        {!(item.image)?<figure className='person-icon'></figure>:
+                                                (!src?
+                                                    <img 
+                                                        className="person-img" 
+                                                        src={`http://localhost:8001/${item.image}`}
+                                                    />:<figure className='person-icon'></figure>
+                                                )
+                                            }                                           
                                             
                                         </div>
                                         <div>
