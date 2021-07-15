@@ -127,11 +127,11 @@ export default function Questions(props){
                             
                             <div class="drop dropdown-menu dropdown-menu-right" id="dropdown" aria-labelledby="dropdownMenuLink" >
                             <button
-                                className='btn dr-link dropdown-item'
-                                type='button'
-                                data-toggle='modal'
+                    data-toggle='modal'
                                 data-target='#EditQuestionModalCenter'
-                                style={{marginRight:40}}
+                                        className='btn dr-link dropdown-item'
+                                type='button'
+                                    style={{marginRight:40}}
                                 onClick={()=>{setQst(item.question); setQstId(item.questionid);  setCategory(item.category); console.log(qst);}}>
                                     Edit
                                 </button>
@@ -181,7 +181,7 @@ export default function Questions(props){
                                     pathname:`/index/Explore/${item.questionid}`,
                                     state: {
                                         question: item.question, 
-                                        user:item.user,
+                                        user:props.name,
                                         category:item.category,
                                         id:item.questionid
                                       }

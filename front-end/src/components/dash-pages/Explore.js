@@ -19,7 +19,7 @@ function Explore(props){
             },
         }).then((response) => {
             setDetails(response.data.questions);
-            setSrc(response.data.image);
+            setSrc(response.data.questions.image);
             console.log(response);
             // setCount(response.data.questions.length);
             // console.log(details);
@@ -66,6 +66,7 @@ function Explore(props){
                                         user:item.user,
                                         category:item.category,
                                         id: item.questionid,
+                                        image: item.image
                                       }
                                 }}
                                 
@@ -76,11 +77,14 @@ function Explore(props){
                                     <div className="qst">{item.question}</div>
                                     <div className="qst-name">
                                         <div>
-                                            {src?
+                                        {!(item.image)?<figure className='person-icon'></figure>:
+                                                (!src?
                                                     <img 
                                                         className="person-img" 
-                                                        src={`http://localhost:8001/${item.user.image}`}
-                                                    />:<figure className='person-icon'></figure>}
+                                                        src={`http://localhost:8001/${item.image}`}
+                                                    />:<figure className='person-icon'></figure>
+                                                )
+                                            }
                                         </div>
                                         <div>
                                             <div>{item.user}</div>

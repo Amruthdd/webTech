@@ -28,6 +28,7 @@ const promise1 = (r) => {
                         qaobject.questionid = e.dataValues.questionid;
                         qaobject.category = e.dataValues.category;
                         qaobject.user = e.dataValues.user.fullname;
+                        qaobject.image = e.dataValues.user.image;
                         if (r[0]) {
                         qaobject.answer = r[0].dataValues.answer;
                         qaobject.answervotes = r[0].dataValues.votes;
