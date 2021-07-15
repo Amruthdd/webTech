@@ -1,4 +1,4 @@
-const sequelize = require("../util/database");
+
 const questiontable = require("../models/questiontable");
 const user = require("../models/user")
 const answertable = require("../models/answertable")
@@ -28,6 +28,7 @@ const promise1 = (r) => {
                         qaobject.questionid = e.dataValues.questionid;
                         qaobject.category = e.dataValues.category;
                         qaobject.user = e.dataValues.user.fullname;
+                        qaobject.image = e.dataValues.user.image;
                         if (r[0]) {
                         qaobject.answer = r[0].dataValues.answer;
                         qaobject.answervotes = r[0].dataValues.votes;
@@ -209,6 +210,7 @@ exports.exploreallquestions = (req, res, next) => {
                 qaobject.questionid = e.dataValues.questionid;
                 qaobject.category = e.dataValues.category;
                 qaobject.user = e.dataValues.user.fullname;
+                qaobject.image = e.dataValues.user.image;
                 result.push(qaobject);
             })
             res.status(200).json({
