@@ -18,8 +18,8 @@ function Explore(props){
                 "x-access-token": localStorage.getItem("token"),
             },
         }).then((response) => {
-            setDetails(response.data.questions);
-            setSrc(response.data.questions.image);
+            setDetails(response.data.result);
+            // setSrc(response.data.questions.image);
             console.log(response);
             // setCount(response.data.questions.length);
             // console.log(details);
