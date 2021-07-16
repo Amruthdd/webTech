@@ -185,7 +185,8 @@ export default function Questions(props){
                                         question: item.question, 
                                         user:props.name,
                                         category:item.category,
-                                        id:item.questionid
+                                        id: item.questionid,
+                                        image:props.src
                                       }
                                 }}
                             >

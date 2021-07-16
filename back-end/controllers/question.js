@@ -1,4 +1,4 @@
-const sequelize = require("../util/database");
+
 const questiontable = require("../models/questiontable");
 const user = require("../models/user")
 const answertable = require("../models/answertable")
